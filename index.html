@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,7 +191,7 @@
     <header>
         <div class="header-content">
             <h1>Happy Birthday to My Best Friend!</h1>
-            <p style="font-size: 1.5rem;">Welcome to world, where we celebrate the birthday of my best friend, who understands, cares , cherish</p>
+            <p style="font-size: 1.5rem;">Welcome to world, where we celebrate the birthday of my best friend, who understands, cares, inspire.</p>
             <div class="birthday-cake">
                 <svg width="200" height="200" viewBox="0 0 200 200">
                     <!-- Cake base -->
@@ -232,35 +231,43 @@
     <section id="section2" class="section">
         <h2 class="chapter-title">Chapter 2: My Cheer Leader</h2>
         <div class="scroll-text">
-            <p>Every time we cook together or observe her cooking , learn something new as she is so good in cooking. She tries her best to make delicious food for her beloved and she keeps the efforts.If I would given a chance, I would write pages of details about her qualities that inspires herfriends and beloved ones.</p>
+            <p>Every time we cook together or observe her cooking , learn something new as she is so good in cooking. She tries her best to make delicious food for her beloved and she keeps the efforts.</p>
+            <p>If I would given a chance, I would write pages of details about her qualities that inspires herfriends and beloved ones.</p>
         </div>
     </section>
 
     <section id="section3" class="section">
         <h2 class="chapter-title">Chapter 3: My Happy Place</h2>
         <div class="scroll-text">
-            <p>we visited temple as it was one year of hers come her to pursue her dreams. Every time we cook together or observe her cooking , learn something new as she is so goodin cooking. She tries her best to make delicious food for her beloved and she keeps the efforts.If I would given a chance, I would write pages of details about her qualities that inspires her friends and beloved ones.</p>
+            <p>We went to temple, last year on 23rd December 2023, was the day, when harshitha came to USA to pursue her dreams, I was so happy to accompany her on this specail day.</p>
+            <p>Every time we cook together or observe her cooking , I learn something new as she is so goodin cooking. She tries her best to make delicious food for her beloved and she keeps the efforts.If I would given a chance, I would write pages of details about her qualities that inspires her friends and beloved ones.</p>
         </div>
     </section>
 
     <section id="section4" class="section">
         <h2 class="chapter-title">Chapter 4: My Secert Keeper</h2>
         <div class="scroll-text">
-            <p>We might not have pictures, together. But we memories that last with me forever and ever. I understand, I have given her trouble with my actions that express a much caring on her, in front of her friends, but she patiently accepts my mistakes and she never expressed her feelings. I will be grateful for accepting my actions, that made her feel bad. I feel, I should have met her before so that I could get more time to understand more things about her😊. I’m blessed to have a friend like her😇</p>
+            <p>We might not have pictures, together. But we memories that last with me forever and ever.</p> 
+            <p>I understand, I have given her trouble with my actions that express a much caring on her, in front of her friends, but she patiently accepts my mistakes, I will be grateful for accepting my behaviour, I have being trying not make any more mistakes, that makes her uncomfortable.</p>
+            <p>I feel, I should have met her before so that I could get more time to understand more things about her😊.</p>
+            <p>I’m blessed to have a friend like her😇</p>
         </div>
     </section>
 
     <section id="section5" class="section">
         <h2 class="chapter-title">Chapter 5: Laugher in the Stars</h2>
         <div class="scroll-text">
-            <p>One day, we were walking to explore the pleasant climate and I got pleasant present from her, she purchased me a cute panda as she remembers I like my panda. As present, I also got a lion 🦁 phone case for my phone. I felt so happy, I felt there is also a person who remembers my favorites and purchases for me 😇 .</p>
+            <p>One day, we were walking to explore the pleasant climate and I got pleasant present from her, she purchased me a cute panda as she remembers I like my panda.</p>
+            <p>As present, I also got a lion 🦁 phone case for my phone. I felt so happy, I felt there is also a person who remembers my favorites and purchases for me 😇 .</p>
+            <p>Our First seflie was made into a gibli portraits, I'm gonna chersih this picture forever and I take good care about it</p>
         </div>
     </section>
 
     <section id="section6" class="section">
         <h2 class="chapter-title">Chapter 6: My Safe Place</h2>
         <div class="scroll-text">
-            <p>I would also like to add, with her patience she has made me understand, how well a lady can make her self look pretty by adding basic care about oneself. I’m implementing her ideas to look better in an occasional togethers. I would say, she is understands silence and happiness in oneself with expressing. She is really blessing🙈 I would like it cherish all of these, moments.</p>
+            <p>I would also like to add, with her patience she has made me understand, how well a lady can make her self look pretty by adding basic care about oneself.</p>
+            <p>I’m implementing her ideas to look better in an occasional togethers. I would say, she is understands silence and happiness in oneself with expressing. She is really blessing🙈 I would like it cherish all of these, moments.</p>
         </div>
     </section>
 
@@ -352,6 +359,24 @@
                 });
             });
         });
+            function createConfetti() {
+        const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
+        const confettiCount = 100;
+
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.top = `${Math.random() * -100}vh`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            confetti.style.opacity = Math.random();
+            document.body.appendChild(confetti);
+        }
+    }
+
+    // Trigger confetti on load
+    window.onload = createConfetti;
     </script>
 </body>
 </html>
