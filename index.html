@@ -160,24 +160,30 @@
         #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
 
 
-        .birthday-cake:hover {
-            animation: bounce 0.6s ease infinite alternate;
-        }
+    .birthday-cake {
+        display: inline-block;
+        cursor: pointer;
+    }
 
-        @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
-        }
+    .birthday-cake:hover {
+        animation: bounce 0.6s ease infinite alternate;
+    }
 
-        .flame {
-            transform-origin: center;
-            animation: flicker 0.15s infinite alternate;
-        }
+    @keyframes bounce {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-10px); }
+    }
 
-        @keyframes flicker {
-            from { transform: scaleY(1) scaleX(1); opacity: 1; }
-            to { transform: scaleY(0.9) scaleX(1.1); opacity: 0.85; }
-        }
+    .flame {
+        transform-origin: center;
+        animation: flicker 0.2s infinite alternate;
+    }
+
+    @keyframes flicker {
+        0% { transform: scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: scale(1.05) rotate(1deg); opacity: 0.85; }
+    }
+        
     </style>
 </head>
 <body>
@@ -222,31 +228,46 @@
     </header>
 
 
+<header>
+    <div class="header-content">
+        <h1>Happy Birthday to My Best Friend!</h1>
+        <p style="font-size: 1.5rem;">Welcome to the world where we celebrate the birthday of my best friend — one who understands, cares, and inspires.</p>
         <div class="birthday-cake" id="cake">
-        <svg width="200" height="230" viewBox="0 0 200 230">
-            <!-- Cake base -->
-            <rect x="50" y="120" width="100" height="60" fill="#A67C52" rx="10" ry="10" />
-
-            <!-- Cake middle layer -->
-            <rect x="40" y="80" width="120" height="40" fill="#D4A76A" rx="10" ry="10" />
-
-            <!-- Cake top layer -->
-            <rect x="60" y="50" width="80" height="30" fill="#F9E4B7" rx="10" ry="10" />
-
-            <!-- Cute face -->
-            <text x="100" y="155" font-size="20" text-anchor="middle">😊</text>
-
-            <!-- Candles -->
-            <rect x="80" y="20" width="5" height="30" fill="#FF6B6B" />
-            <rect x="100" y="15" width="5" height="35" fill="#4ECDC4" />
-            <rect x="120" y="20" width="5" height="30" fill="#FFD166" />
-
-            <!-- Flames -->
-            <ellipse class="flame" cx="82.5" cy="15" rx="5" ry="8" fill="#FFD166" />
-            <ellipse class="flame" cx="102.5" cy="10" rx="5" ry="8" fill="#FF6B6B" />
-            <ellipse class="flame" cx="122.5" cy="15" rx="5" ry="8" fill="#4ECDC4" />
-        </svg>
+            <svg width="250" height="280" viewBox="0 0 250 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Gradients for realistic shading -->
+                    <linearGradient id="cakeBase" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#a67c52"/>
+                        <stop offset="100%" stop-color="#7b5e3c"/>
+                    </linearGradient>
+                    <linearGradient id="cakeMiddle" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#e1b87e"/>
+                        <stop offset="100%" stop-color="#b38756"/>
+                    </linearGradient>
+                    <linearGradient id="cakeTop" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#fff5d6"/>
+                        <stop offset="100%" stop-color="#f0cfa0"/>
+                    </linearGradient>
+                </defs>
+                <rect x="60" y="150" width="130" height="60" rx="20" ry="20" fill="url(#cakeBase)" />
+                <rect x="50" y="110" width="150" height="45" rx="20" ry="20" fill="url(#cakeMiddle)" />
+                <rect x="70" y="70" width="110" height="40" rx="20" ry="20" fill="url(#cakeTop)" />
+                <path d="M70 90 Q80 100 90 90 T110 90 T130 90 T150 90 T180 90" fill="#fbe3bc" stroke="#e6c49f" stroke-width="1"/>
+                <text x="125" y="185" font-size="22" text-anchor="middle">😊</text>
+                <rect x="90" y="35" width="6" height="35" fill="#ff8a80" rx="2" />
+                <rect x="120" y="30" width="6" height="40" fill="#4ecdc4" rx="2" />
+                <rect x="150" y="35" width="6" height="35" fill="#ffd166" rx="2" />
+                <line x1="90" y1="35" x2="96" y2="70" stroke="white" stroke-dasharray="4,4" />
+                <line x1="120" y1="30" x2="126" y2="70" stroke="white" stroke-dasharray="4,4" />
+                <line x1="150" y1="35" x2="156" y2="70" stroke="white" stroke-dasharray="4,4" />
+                <path class="flame" d="M93 25 Q95 10 90 5 Q85 10 87 20 Q89 25 93 25" fill="#ffcc00" />
+                <path class="flame" d="M123 20 Q125 5 120 3 Q115 7 118 17 Q120 22 123 20" fill="#ff6b6b" />
+                <path class="flame" d="M153 25 Q155 10 150 5 Q145 10 147 20 Q149 25 153 25" fill="#4ecdc4" />
+            </svg>
         </div>
+    </div>
+</header>
+
 
     <section id="section1" class="section">
         <h2 class="chapter-title">Chapter 1: The Smile that Started It All</h2>
