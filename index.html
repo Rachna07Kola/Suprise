@@ -160,19 +160,12 @@
         #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
 
 
- body {
-      text-align: center;
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff7e6;
-      padding-top: 40px;
-    }
-
-    .birthday-cake {
+ .cake-slice {
       display: inline-block;
       cursor: pointer;
     }
 
-    .birthday-cake:hover {
+    .cake-slice:hover {
       animation: bounce 0.6s ease infinite alternate;
     }
 
@@ -188,7 +181,7 @@
 
     @keyframes flicker {
       0% { transform: scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: scale(1.05) rotate(1deg); opacity: 0.85; }
+      100% { transform: scale(1.05) rotate(2deg); opacity: 0.85; }
     }
         
     </style>
@@ -204,42 +197,28 @@
         <a href="#section7">Chapter 7</a>
         <a href="#section8">Chapter 8</a>
     </nav>
-
+    
     <header>
+        
     <h1>Happy Birthday to My Best Friend!</h1>
-    <p style="font-size: 1.5rem;">Welcome to the world where we celebrate the birthday of my best friend — one who understands, cares, and inspires.</p>
+  <p style="font-size: 1.5rem;">Here's a slice of love, laughter, and layered cake — just for you!</p>
 
-    <div class="birthday-cake">
-      <svg width="250" height="300" viewBox="0 0 250 300" xmlns="http://www.w3.org/2000/svg">
-        <!-- Bottom Tier -->
-        <ellipse cx="125" cy="220" rx="80" ry="25" fill="#A67C52" />
-        <rect x="45" y="150" width="160" height="70" rx="40" ry="40" fill="#A67C52" />
-        <ellipse cx="125" cy="150" rx="80" ry="25" fill="#A67C52" />
-
-        <!-- Middle Tier -->
-        <ellipse cx="125" cy="120" rx="60" ry="20" fill="#D4A76A" />
-        <rect x="65" y="80" width="120" height="40" rx="30" ry="30" fill="#D4A76A" />
-        <ellipse cx="125" cy="80" rx="60" ry="20" fill="#D4A76A" />
-
-        <!-- Top Tier -->
-        <ellipse cx="125" cy="60" rx="40" ry="15" fill="#F9E4B7" />
-        <rect x="85" y="35" width="80" height="25" rx="20" ry="20" fill="#F9E4B7" />
-        <ellipse cx="125" cy="35" rx="40" ry="15" fill="#F9E4B7" />
-
-        <!-- Candles -->
-        <rect x="110" y="5" width="4" height="30" fill="#ff6b6b" />
-        <rect x="125" y="2" width="4" height="33" fill="#4ecdc4" />
-        <rect x="140" y="5" width="4" height="30" fill="#ffd166" />
-
-        <!-- Flames -->
-        <path class="flame" d="M112 5 Q114 -5 110 -10 Q106 -5 108 2 Q110 7 112 5" fill="#ffcc00" />
-        <path class="flame" d="M127 2 Q129 -8 125 -12 Q121 -6 123 1 Q125 6 127 2" fill="#ff6b6b" />
-        <path class="flame" d="M142 5 Q144 -5 140 -10 Q136 -5 138 2 Q140 7 142 5" fill="#4ecdc4" />
-      </svg>
-    </div>
+  <div class="cake-slice">
+    <svg width="300" height="250" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="150" cy="230" rx="100" ry="15" fill="#ddd" />
+      <polygon points="90,70 220,60 200,100 70,110" fill="#f9d6a0" stroke="#cfa76a" stroke-width="1" />
+      <polygon points="70,110 70,180 200,170 200,100" fill="#d4a76a" stroke="#b7854f" stroke-width="1" />
+      <polygon points="220,60 220,130 200,170 200,100" fill="#fce5bc" stroke="#d5b88d" stroke-width="1" />
+      <line x1="70" y1="125" x2="200" y2="115" stroke="#fff" stroke-width="4" />
+      <line x1="70" y1="145" x2="200" y2="135" stroke="#fff" stroke-width="4" />
+      <line x1="70" y1="165" x2="200" y2="155" stroke="#fff" stroke-width="4" />
+      <rect x="140" y="30" width="6" height="40" fill="#ff6b6b" rx="2" />
+      <line x1="140" y1="30" x2="146" y2="70" stroke="white" stroke-dasharray="3,3" />
+      <path class="flame" d="M143 20 Q145 10 140 5 Q135 10 138 18 Q140 22 143 20" fill="#ffcc00" />
+    </svg>
+  </div>
   </header>
-
-
+    
     <section id="section1" class="section">
         <h2 class="chapter-title">Chapter 1: The Smile that Started It All</h2>
         <div class="scroll-text">
