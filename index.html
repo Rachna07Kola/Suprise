@@ -120,6 +120,7 @@
         }
         
         .scroll-text {
+            width: 90%;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
@@ -138,26 +139,7 @@
             transform: translateY(0);
         }
         
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f69d3c;
-            animation: confetti-fall 5s ease-in infinite;
-            z-index: 999;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
+       
         .birthday-cake {
             margin-top: 40px;
             text-align: center;
@@ -176,6 +158,26 @@
         #section4 { background: linear-gradient(135deg, #CE9FFC, #7367F0); }
         #section5 { background: linear-gradient(135deg, #90F7EC, #32CCBC); }
         #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
+
+
+        .birthday-cake:hover {
+            animation: bounce 0.6s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .flame {
+            transform-origin: center;
+            animation: flicker 0.15s infinite alternate;
+        }
+
+        @keyframes flicker {
+            from { transform: scaleY(1) scaleX(1); opacity: 1; }
+            to { transform: scaleY(0.9) scaleX(1.1); opacity: 0.85; }
+        }
     </style>
 </head>
 <body>
@@ -186,6 +188,8 @@
         <a href="#section4">Chapter 4</a>
         <a href="#section5">Chapter 5</a>
         <a href="#section6">Chapter 6</a>
+        <a href="#section7">Chapter 7</a>
+        <a href="#section8">Chapter 8</a>
     </nav>
 
     <header>
@@ -216,6 +220,33 @@
             </div>
         </div>
     </header>
+
+
+        <div class="birthday-cake" id="cake">
+        <svg width="200" height="230" viewBox="0 0 200 230">
+            <!-- Cake base -->
+            <rect x="50" y="120" width="100" height="60" fill="#A67C52" rx="10" ry="10" />
+
+            <!-- Cake middle layer -->
+            <rect x="40" y="80" width="120" height="40" fill="#D4A76A" rx="10" ry="10" />
+
+            <!-- Cake top layer -->
+            <rect x="60" y="50" width="80" height="30" fill="#F9E4B7" rx="10" ry="10" />
+
+            <!-- Cute face -->
+            <text x="100" y="155" font-size="20" text-anchor="middle">😊</text>
+
+            <!-- Candles -->
+            <rect x="80" y="20" width="5" height="30" fill="#FF6B6B" />
+            <rect x="100" y="15" width="5" height="35" fill="#4ECDC4" />
+            <rect x="120" y="20" width="5" height="30" fill="#FFD166" />
+
+            <!-- Flames -->
+            <ellipse class="flame" cx="82.5" cy="15" rx="5" ry="8" fill="#FFD166" />
+            <ellipse class="flame" cx="102.5" cy="10" rx="5" ry="8" fill="#FF6B6B" />
+            <ellipse class="flame" cx="122.5" cy="15" rx="5" ry="8" fill="#4ECDC4" />
+        </svg>
+        </div>
 
     <section id="section1" class="section">
         <h2 class="chapter-title">Chapter 1: The Smile that Started It All</h2>
@@ -289,7 +320,7 @@
             <p>Our First seflie was made into a gibli portraits, I'm gonna chersih this picture forever and I take good care about it</p>
             <p>It was first time, it was so great to watch movie,called trap at Lyceum.</p>
             <p>It was first time we went out to have dinner together.</p>
-            <p>I think it was 4th of December, it was the first time we had a breakfast together at which wich restaurant.</p
+            <p>I think it was 4th of December, it was the first time we had a breakfast together at which wich restaurant.</p>
             <p> On 11th April, we had our first/second lunch together. It was day, I felt even I have someone who cares about my healthy lifestyle and also wants me to explore multiple cuisines.</p>
             <p>I felt, if the time would pause for a minute. I would cherish time as it was so precious and special.</p>
             <p>There are multiple moments that we shared, I have been missing out out to added them as per the timelines of occurrence of the moments🥰🥰</p>
@@ -314,7 +345,7 @@
         </div>
     </section>
     
-    <section id="section6" class="section">
+    <section id="section7" class="section">
         <h2 class="chapter-title">Chapter 7: Journey</h2>
         <div class="scroll-text">
             <p>I’m so happy, on 4th April, Harshitha received her new badge as she completed 2500 points on the Einstein bro begals training sessions and she got an appreciation from her manager and I’m happy to see her happy and I want her to achieve all her dreams😊</p>
@@ -326,7 +357,7 @@
         </div>
     </section>
     
-    <section id="section6" class="section">
+    <section id="section8" class="section">
         <h2 class="chapter-title">Chapter 8: Healtfelt Suprise</h2>
         <div class="scroll-text">
             <p>On 12th April, I was received a best hand written, with lots of affection from Harshitha.</p>
@@ -442,7 +473,14 @@
                 });
             });
         });
-          
+                // Optional: Add some random flicker effect
+        const flames = document.querySelectorAll('.flame');
+        setInterval(() => {
+            flames.forEach(flame => {
+                flame.setAttribute('rx', 4 + Math.random() * 2);
+                flame.setAttribute('ry', 7 + Math.random() * 2);
+            });
+        }, 100);
     </script>
 </body>
 </html>
