@@ -445,9 +445,16 @@
             document.body.appendChild(confetti);
         }
     }
-
-    // Trigger confetti on load
     window.onload = createConfetti;
+      document.addEventListener('click', function (e) {
+    confetti({
+      origin: {
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight
+      }
+    });
+  });
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     </script>
 </body>
 </html>
