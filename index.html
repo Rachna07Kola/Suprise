@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday to My Best Friend!</title>
-    <style>
-        * {
+    <style>    * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -51,8 +50,6 @@
             margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             animation: glow 2s infinite alternate;
-            color: #e85d75;
-            font-size: 2.5rem;
         }
         
         @keyframes glow {
@@ -122,7 +119,6 @@
         }
         
         .scroll-text {
-            width: 90%;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
@@ -141,7 +137,26 @@
             transform: translateY(0);
         }
         
-       
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f69d3c;
+            animation: confetti-fall 5s ease-in infinite;
+            z-index: 999;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
         .birthday-cake {
             margin-top: 40px;
             text-align: center;
@@ -153,6 +168,7 @@
             text-align: center;
             padding: 20px;
         }
+
         
         #section1 { background: linear-gradient(135deg, #FDEB71, #F8D800); }
         #section2 { background: linear-gradient(135deg, #ABDCFF, #0396FF); }
@@ -161,16 +177,6 @@
         #section5 { background: linear-gradient(135deg, #90F7EC, #32CCBC); }
         #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
 
-
- body {
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      background: #fff5f8;
-      margin: 0;
-      padding: 40px;
-    }
-
-    
     p {
       color: #333;
       font-size: 1.3rem;
@@ -240,26 +246,34 @@
         <a href="#section8">Chapter 8</a>
     </nav>
     
-      <header>
-    <h1>Happy Birthday to My Best Friend!</h1>
-    <p style="font-size: 1.5rem;">
-      Welcome to my world, where I would to celebrate birthday of dearest friend, 
-      whose care is unmeasurable, affection is precious, journey is an inspiration, 
-      and concern for her beloved is unconditional.
-    </p>
-
-    <div class="cake-slice">
-      <svg id="cakeSvg" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-        <!-- Candle -->
-        <rect x="140" y="30" width="6" height="40" fill="#ff6b6b" rx="2" />
-        <line x1="140" y1="30" x2="146" y2="70" stroke="white" stroke-dasharray="3,3" />
-        <path class="flame" d="M143 20 Q145 10 140 5 Q135 10 138 18 Q140 22 143 20" fill="#ffcc00" />
-        
-        <!-- Dynamic cake layers -->
-        <g id="layers"></g>
-      </svg>
-    </div>
-  </header>
+    <header>
+        <div class="header-content">
+            <h1>Happy Birthday to My Best Friend!</h1>
+            <p style="font-size: 1.5rem;">Welcome to my world, where I would to celebrate birthday of dearest friend, whose care is unmeasurable, affection is precious, journey is an inspiration, concern for her beloved is unconditional.</p>
+            <div class="birthday-cake">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Cake base -->
+                    <rect x="50" y="120" width="100" height="60" fill="#A67C52" rx="5" ry="5" />
+                    
+                    <!-- Cake middle layer -->
+                    <rect x="40" y="80" width="120" height="40" fill="#D4A76A" rx="5" ry="5" />
+                    
+                    <!-- Cake top layer -->
+                    <rect x="60" y="50" width="80" height="30" fill="#F9E4B7" rx="5" ry="5" />
+                    
+                    <!-- Candles -->
+                    <rect x="80" y="20" width="5" height="30" fill="#FF6B6B" />
+                    <rect x="100" y="15" width="5" height="35" fill="#4ECDC4" />
+                    <rect x="120" y="20" width="5" height="30" fill="#FFD166" />
+                    
+                    <!-- Flames -->
+                    <ellipse cx="82.5" cy="15" rx="5" ry="8" fill="#FFD166" />
+                    <ellipse cx="102.5" cy="10" rx="5" ry="8" fill="#FF6B6B" />
+                    <ellipse cx="122.5" cy="15" rx="5" ry="8" fill="#4ECDC4" />
+                </svg>
+            </div>
+        </div>
+    </header>
 
   <!-- Add scrollable space if needed -->
   <div style="height: 800px;"></div>
