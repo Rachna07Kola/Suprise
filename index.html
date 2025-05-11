@@ -160,9 +160,22 @@
         #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
 
 
- .cake-slice {
+
+
+    h1 {
+      color: #e85d75;
+      font-size: 2.5rem;
+    }
+
+    p {
+      color: #333;
+      font-size: 1.3rem;
+    }
+
+    .cake-slice {
       display: inline-block;
       cursor: pointer;
+      margin-top: 20px;
     }
 
     .cake-slice:hover {
@@ -182,6 +195,37 @@
     @keyframes flicker {
       0% { transform: scale(1) rotate(0deg); opacity: 1; }
       100% { transform: scale(1.05) rotate(2deg); opacity: 0.85; }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: 0;
+      animation: fall 5s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #ff6b6b;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background: #e85d75;
     }
         
     </style>
@@ -203,20 +247,15 @@
     <h1>Happy Birthday to My Best Friend!</h1>
   <p style="font-size: 1.5rem;">Here's a slice of love, laughter, and layered cake — just for you!</p>
 
-  <div class="cake-slice">
-    <svg width="300" height="250" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="150" cy="230" rx="100" ry="15" fill="#ddd" />
-      <polygon points="90,70 220,60 200,100 70,110" fill="#f9d6a0" stroke="#cfa76a" stroke-width="1" />
-      <polygon points="70,110 70,180 200,170 200,100" fill="#d4a76a" stroke="#b7854f" stroke-width="1" />
-      <polygon points="220,60 220,130 200,170 200,100" fill="#fce5bc" stroke="#d5b88d" stroke-width="1" />
-      <line x1="70" y1="125" x2="200" y2="115" stroke="#fff" stroke-width="4" />
-      <line x1="70" y1="145" x2="200" y2="135" stroke="#fff" stroke-width="4" />
-      <line x1="70" y1="165" x2="200" y2="155" stroke="#fff" stroke-width="4" />
-      <rect x="140" y="30" width="6" height="40" fill="#ff6b6b" rx="2" />
-      <line x1="140" y1="30" x2="146" y2="70" stroke="white" stroke-dasharray="3,3" />
-      <path class="flame" d="M143 20 Q145 10 140 5 Q135 10 138 18 Q140 22 143 20" fill="#ffcc00" />
-    </svg>
-  </div>
+     <div class="cake-slice">
+      <svg id="cakeSvg" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Candle -->
+        <rect x="140" y="30" width="6" height="40" fill="#ff6b6b" rx="2" />
+        <line x1="140" y1="30" x2="146" y2="70" stroke="white" stroke-dasharray="3,3" />
+        <path class="flame" d="M143 20 Q145 10 140 5 Q135 10 138 18 Q140 22 143 20" fill="#ffcc00" />        <g id="layers"></g>
+      </svg>
+    </div>
+    <button id="addLayerBtn">Reveal Cake Layer</button>
   </header>
     
     <section id="section1" class="section">
@@ -411,47 +450,64 @@
         // Initialize
         handleScrollAnimation();
         
-        // Create confetti effect
-        function createConfetti() {
-            const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDelay = Math.random() * 5 + 's';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                document.body.appendChild(confetti);
-                
-                // Remove confetti after animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
-        
-        // Trigger confetti every 10 seconds
-        setInterval(createConfetti, 10000);
-        createConfetti(); // Initial confetti
-        
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+           // Confetti generator
+    function createConfetti() {
+      const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
+
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDelay = Math.random() * 5 + 's';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+    }
+
+    setInterval(createConfetti, 10000);
+    createConfetti();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
-                // Optional: Add some random flicker effect
-        const flames = document.querySelectorAll('.flame');
-        setInterval(() => {
-            flames.forEach(flame => {
-                flame.setAttribute('rx', 4 + Math.random() * 2);
-                flame.setAttribute('ry', 7 + Math.random() * 2);
-            });
-        }, 100);
+      });
+    });
+
+    // Flicker effect
+    const flames = document.querySelectorAll('.flame');
+    setInterval(() => {
+      flames.forEach(flame => {
+        flame.setAttribute('rx', 4 + Math.random() * 2);
+        flame.setAttribute('ry', 7 + Math.random() * 2);
+      });
+    }, 100);
+
+    // Add cake layers dynamically
+    const colors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
+    let currentLayer = 0;
+
+    document.getElementById('addLayerBtn').addEventListener('click', () => {
+      if (currentLayer >= colors.length) return;
+
+      const yOffset = 180 - currentLayer * 15;
+      const layer = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+      layer.setAttribute("points", `70,${yOffset} 70,${yOffset+15} 200,${yOffset+5} 200,${yOffset-10}`);
+      layer.setAttribute("fill", colors[currentLayer]);
+      layer.setAttribute("stroke", "#b7854f");
+      layer.setAttribute("stroke-width", "1");
+
+      document.getElementById("layers").appendChild(layer);
+      currentLayer++;
+    });
     </script>
 </body>
 </html>
