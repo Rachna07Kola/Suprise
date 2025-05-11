@@ -51,6 +51,8 @@
             margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             animation: glow 2s infinite alternate;
+            color: #e85d75;
+            font-size: 2.5rem;
         }
         
         @keyframes glow {
@@ -160,13 +162,15 @@
         #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
 
 
-
-
-    h1 {
-      color: #e85d75;
-      font-size: 2.5rem;
+ body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background: #fff5f8;
+      margin: 0;
+      padding: 40px;
     }
 
+    
     p {
       color: #333;
       font-size: 1.3rem;
@@ -213,21 +217,15 @@
       }
     }
 
-    button {
-      padding: 10px 20px;
-      background: #ff6b6b;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 20px;
+    #layers polygon {
+      opacity: 0;
+      transform-origin: center;
+      transition: opacity 0.6s ease, transform 0.4s ease;
     }
 
-    button:hover {
-      background: #e85d75;
-    }
-        
+    #layers polygon:hover {
+      transform: scale(1.03);
+    }        
     </style>
 </head>
 <body>
@@ -242,21 +240,29 @@
         <a href="#section8">Chapter 8</a>
     </nav>
     
-    <header>
-        
+      <header>
     <h1>Happy Birthday to My Best Friend!</h1>
-  <p style="font-size: 1.5rem;">Here's a slice of love, laughter, and layered cake — just for you!</p>
+    <p style="font-size: 1.5rem;">
+      Welcome to my world, where I would to celebrate birthday of dearest friend, 
+      whose care is unmeasurable, affection is precious, journey is an inspiration, 
+      and concern for her beloved is unconditional.
+    </p>
 
-     <div class="cake-slice">
+    <div class="cake-slice">
       <svg id="cakeSvg" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
         <!-- Candle -->
         <rect x="140" y="30" width="6" height="40" fill="#ff6b6b" rx="2" />
         <line x1="140" y1="30" x2="146" y2="70" stroke="white" stroke-dasharray="3,3" />
-        <path class="flame" d="M143 20 Q145 10 140 5 Q135 10 138 18 Q140 22 143 20" fill="#ffcc00" />        <g id="layers"></g>
+        <path class="flame" d="M143 20 Q145 10 140 5 Q135 10 138 18 Q140 22 143 20" fill="#ffcc00" />
+        
+        <!-- Dynamic cake layers -->
+        <g id="layers"></g>
       </svg>
     </div>
-    <button id="addLayerBtn">Reveal Cake Layer</button>
   </header>
+
+  <!-- Add scrollable space if needed -->
+  <div style="height: 800px;"></div>
     
     <section id="section1" class="section">
         <h2 class="chapter-title">Chapter 1: The Smile that Started It All</h2>
@@ -451,38 +457,7 @@
         handleScrollAnimation();
         
            // Confetti generator
-    function createConfetti() {
-      const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
-
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.animationDelay = Math.random() * 5 + 's';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-        document.body.appendChild(confetti);
-
-        setTimeout(() => {
-          confetti.remove();
-        }, 5000);
-      }
-    }
-
-    setInterval(createConfetti, 10000);
-    createConfetti();
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // Flicker effect
+    // Candle flame flicker enhancement (optional subtle variation)
     const flames = document.querySelectorAll('.flame');
     setInterval(() => {
       flames.forEach(flame => {
@@ -491,22 +466,58 @@
       });
     }, 100);
 
-    // Add cake layers dynamically
-    const colors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
+    // Confetti generator
+    function createConfetti() {
+      const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDelay = Math.random() * 5 + 's';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    setInterval(createConfetti, 10000);
+    createConfetti();
+
+    // Auto-reveal cake layers on load
+    const layerColors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
     let currentLayer = 0;
 
-    document.getElementById('addLayerBtn').addEventListener('click', () => {
-      if (currentLayer >= colors.length) return;
+    function addCakeLayer() {
+      if (currentLayer >= layerColors.length) return;
 
       const yOffset = 180 - currentLayer * 15;
       const layer = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-      layer.setAttribute("points", `70,${yOffset} 70,${yOffset+15} 200,${yOffset+5} 200,${yOffset-10}`);
-      layer.setAttribute("fill", colors[currentLayer]);
+      layer.setAttribute("points", `70,${yOffset} 70,${yOffset + 15} 200,${yOffset + 5} 200,${yOffset - 10}`);
+      layer.setAttribute("fill", layerColors[currentLayer]);
       layer.setAttribute("stroke", "#b7854f");
       layer.setAttribute("stroke-width", "1");
 
+      // Fade-in effect
+      layer.style.opacity = 0;
       document.getElementById("layers").appendChild(layer);
+
+      requestAnimationFrame(() => {
+        layer.style.opacity = 1;
+      });
+
       currentLayer++;
+    }
+
+    // On page load, reveal each layer with delay
+    window.addEventListener('DOMContentLoaded', () => {
+      const revealInterval = setInterval(() => {
+        if (currentLayer >= layerColors.length) {
+          clearInterval(revealInterval);
+          return;
+        }
+        addCakeLayer();
+      }, 800);
     });
     </script>
 </body>
