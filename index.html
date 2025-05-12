@@ -299,7 +299,7 @@ footer::before {
 
     <header>
         <div class="header-content">
-            <h1>Happy Birthday to My Best Friend!<span class="name-highlight">Harshitha</span>! </h1>
+            <h1>Happy Birthday Harshitha</h1>
             <p style="font-size: 1.5rem;">Welcome to my world, where I would to celebrate birthday of dearest friend, whose care is unmeasurable, affection is precious, journey is an inspiration, concern for her beloved is unconditional.</p>
             <div class="birthday-cake">
                 <svg width="200" height="200" viewBox="0 0 200 200">
@@ -471,8 +471,9 @@ footer::before {
     <div class="heart"></div>
     <div class="heart"></div>
 
-    <p>Made with love for the best friend anyone could ask for ❤️</p>
+    <p>More than a friend, you're family—this wish is made with love for the best friend anyone could ever ask for. Your presence is a gift, your friendship a blessing, and your heart a home for all who know you ❤️</p>
     <p>© <span id="current-year"></span> | Birthday Celebration's of Best Friend</p>
+    <p>© <span id="current-year"></span> | Birthday Celebration's of Best Friend | <span id="current-date"></span></p>
 </footer>
 
 <script>
@@ -594,6 +595,13 @@ footer::before {
       }, 100);
 
     }, 2700); // Curtain animation duration
+  });
+   const now = new Date();
+  document.getElementById("current-year").textContent = now.getFullYear();
+  document.getElementById("current-date").textContent = now.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
     </script>
 </body>
