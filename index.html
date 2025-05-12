@@ -181,57 +181,48 @@
       color: #333;
       font-size: 1.3rem;
     }
+.sliding-sheet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 10000;
+  background: #000;
+  pointer-events: none;
+}
 
-    .cake-slice {
-      display: inline-block;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+.left-sheet, .right-sheet {
+  width: 50%;
+  height: 100%;
+  background: #000;
+}
 
-    .cake-slice:hover {
-      animation: bounce 0.6s ease infinite alternate;
-    }
+.left-sheet {
+  animation: slideLeft 2.5s forwards;
+}
 
-    @keyframes bounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px); }
-    }
+.right-sheet {
+  animation: slideRight 2.5s forwards;
+}
 
-    .flame {
-      transform-origin: center;
-      animation: flicker 0.2s infinite alternate;
-    }
+@keyframes slideLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
 
-    @keyframes flicker {
-      0% { transform: scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: scale(1.05) rotate(2deg); opacity: 0.85; }
-    }
+@keyframes slideRight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
 
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      top: 0;
-      animation: fall 5s linear forwards;
-      z-index: 9999;
-    }
+.fade-in-content {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
 
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    #layers polygon {
-      opacity: 0;
-      transform-origin: center;
-      transition: opacity 0.6s ease, transform 0.4s ease;
-    }
-
-    #layers polygon:hover {
-      transform: scale(1.03);
-    }        
+    
     </style>
 </head>
 <body>
@@ -246,6 +237,12 @@
         <a href="#section8">Chapter 8</a>
     </nav>
     
+    <div class="sliding-sheet" id="slidingSheet">
+  <div class="left-sheet"></div>
+  <div class="right-sheet"></div>
+</div>
+<div id="mainContent" class="fade-in-content">
+
     <header>
         <div class="header-content">
             <h1>Happy Birthday to My Best Friend!</h1>
@@ -469,70 +466,72 @@
         
         // Initialize
         handleScrollAnimation();
-        
-           // Confetti generator
-    // Candle flame flicker enhancement (optional subtle variation)
-    const flames = document.querySelectorAll('.flame');
-    setInterval(() => {
-      flames.forEach(flame => {
-        flame.setAttribute('rx', 4 + Math.random() * 2);
-        flame.setAttribute('ry', 7 + Math.random() * 2);
-      });
-    }, 100);
+      // Wait for page to load
+  window.addEventListener('DOMContentLoaded', () => {
+    const curtain = document.getElementById('slidingSheet');
+    const mainContent = document.getElementById('mainContent');
 
-    // Confetti generator
-    function createConfetti() {
-      const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.animationDelay = Math.random() * 5 + 's';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    // Delay showing main content until curtain animation ends
+    setTimeout(() => {
+      curtain.style.display = 'none';
+      mainContent.style.opacity = 1;
 
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 5000);
+      // Start cake layer reveal
+      const layerColors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
+      let currentLayer = 0;
+
+      function addCakeLayer() {
+        if (currentLayer >= layerColors.length) return;
+        const yOffset = 180 - currentLayer * 15;
+        const layer = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        layer.setAttribute("points", `70,${yOffset} 70,${yOffset + 15} 200,${yOffset + 5} 200,${yOffset - 10}`);
+        layer.setAttribute("fill", layerColors[currentLayer]);
+        layer.setAttribute("stroke", "#b7854f");
+        layer.setAttribute("stroke-width", "1");
+        layer.style.opacity = 0;
+        document.getElementById("layers").appendChild(layer);
+        requestAnimationFrame(() => {
+          layer.style.opacity = 1;
+        });
+        currentLayer++;
       }
-    }
 
-    setInterval(createConfetti, 10000);
-    createConfetti();
-
-    // Auto-reveal cake layers on load
-    const layerColors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
-    let currentLayer = 0;
-
-    function addCakeLayer() {
-      if (currentLayer >= layerColors.length) return;
-
-      const yOffset = 180 - currentLayer * 15;
-      const layer = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-      layer.setAttribute("points", `70,${yOffset} 70,${yOffset + 15} 200,${yOffset + 5} 200,${yOffset - 10}`);
-      layer.setAttribute("fill", layerColors[currentLayer]);
-      layer.setAttribute("stroke", "#b7854f");
-      layer.setAttribute("stroke-width", "1");
-
-      // Fade-in effect
-      layer.style.opacity = 0;
-      document.getElementById("layers").appendChild(layer);
-
-      requestAnimationFrame(() => {
-        layer.style.opacity = 1;
-      });
-
-      currentLayer++;
-    }
-
-    // On page load, reveal each layer with delay
-    window.addEventListener('DOMContentLoaded', () => {
       const revealInterval = setInterval(() => {
         if (currentLayer >= layerColors.length) {
           clearInterval(revealInterval);
-          return;
+        } else {
+          addCakeLayer();
         }
-        addCakeLayer();
       }, 800);
-    });
+
+      // Start confetti
+      function createConfetti() {
+        const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.animationDelay = Math.random() * 5 + 's';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 5000);
+        }
+      }
+
+      createConfetti();
+      setInterval(createConfetti, 10000);
+
+      // Animate flames
+      const flames = document.querySelectorAll('.flame');
+      setInterval(() => {
+        flames.forEach(flame => {
+          flame.setAttribute('rx', 4 + Math.random() * 2);
+          flame.setAttribute('ry', 7 + Math.random() * 2);
+        });
+      }, 100);
+
+    }, 2700); // Curtain animation duration
+  });
     </script>
 </body>
 </html>
