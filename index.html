@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday to My Best Friend!</title>
-    <style>    * {
+    <style> 
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -162,12 +163,65 @@
             text-align: center;
         }
         
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+ footer {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+footer p:first-child {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #ffcccb;
+}
+
+/* Sparkle background effect */
+footer::before {
+    content: '';
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    left: 50%;
+    top: 80%;
+    animation: float 4s infinite ease-in-out;
+    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 85% 22%, 87% 35%, 80% 45%, 50% 75%, 20% 45%, 13% 35%, 15% 22%, 25% 12%, 39% 12%);
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* Random variations */
+.heart:nth-child(1) { left: 40%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 60%; animation-delay: 1s; }
+.heart:nth-child(3) { left: 50%; animation-delay: 2s; }
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { transform: translateY(-40px) scale(1.1); opacity: 1; }
+    100% { transform: translateY(-80px) scale(0.9); opacity: 0; }
+}
 
         
         #section1 { background: linear-gradient(135deg, #FDEB71, #F8D800); }
@@ -412,10 +466,19 @@
         </div>
     </section> 
     
-    <footer>
-        <p>Made with love for the best friend anyone could ask for ❤️</p>
-        <p>© <span id="current-year"></span> | Birthday Celebration's of Best Friend</p>
-    </footer>
+<footer>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
+    <p>Made with love for the best friend anyone could ask for ❤️</p>
+    <p>© <span id="current-year"></span> | Birthday Celebration's of Best Friend</p>
+</footer>
+
+<script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+
 
     <script>
         // Update current year
