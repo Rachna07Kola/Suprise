@@ -275,6 +275,36 @@ footer::before {
   opacity: 0;
   transition: opacity 1.5s ease;
 }
+
+    .section-container {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .text-content {
+      flex: 1;
+      font-size: 18px;
+      padding-right: 20px;
+    }
+
+    .scrolling-image {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .scrolling-image img {
+      position: absolute;
+      animation: scrollY 5s linear infinite;
+      width: 100%;
+    }
+
+    @keyframes scrollY {
+      0% { top: 100%; }
+      100% { top: -100%; }
+    }
     </style>
 </head>
 <body>
@@ -336,6 +366,10 @@ footer::before {
             <p>She patiently sits along and hears my thoughts and she prays that I need to be happy 😊.</p>
             <p>As we started knowing each other, I understood that she is the kindest person.</p>
         </div>
+           <div class="scrolling-image">
+      <img src="Sweetest and Cutest Note.jpeg" alt="Scrolling Image">
+    </div>
+  </div>
     </section>
 
     <section id="section2" class="section">
