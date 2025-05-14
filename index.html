@@ -276,16 +276,17 @@ footer::before {
   transition: opacity 1.5s ease;
 }
 
-    .section-container {
+        .section-container {
       display: flex;
-      align-items: center;
-      padding: 20px;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 40px;
+      font-family: Arial, sans-serif;
     }
 
     .text-content {
       flex: 1;
-      font-size: 18px;
-      padding-right: 20px;
+      padding-right: 30px;
     }
 
     .scrolling-image {
@@ -293,15 +294,17 @@ footer::before {
       height: 200px;
       overflow: hidden;
       position: relative;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
     .scrolling-image img {
       position: absolute;
-      animation: scrollY 5s linear infinite;
+      animation: scrollUp 6s linear infinite;
       width: 100%;
     }
 
-    @keyframes scrollY {
+    @keyframes scrollUp {
       0% { top: 100%; }
       100% { top: -100%; }
     }
@@ -366,9 +369,6 @@ footer::before {
             <p>She patiently sits along and hears my thoughts and she prays that I need to be happy 😊.</p>
             <p>As we started knowing each other, I understood that she is the kindest person.</p>
         </div>
-           <div class="scrolling-image">
-      <img src="Sweetest and Cutest Note.jpeg" alt="Scrolling Image">
-    </div>
   </div>
     </section>
 
@@ -508,6 +508,9 @@ footer::before {
             <p>There are multiple qualities triads that she holds that means a lot and makes a good impression to everyone she knows and meets😊🙈 .</p>
             <p>Forever grateful for your friendship and the precious moments we share.</p>
         </div>
+      <div class="scrolling-image">
+      <img src="Sweetest and Cutest Note.jpeg" alt="Scrolling Image">
+    </div>
     </section> 
     
 <footer>
@@ -519,11 +522,12 @@ footer::before {
     <p>© <span id="current-year"></span> <span id="current-date"></span> | Birthday Celebration's of Best Friend</p>
 </footer>
 
- <audio id="bgm" autoplay loop muted playsinline>
+<div> 
+<audio id="bgm" autoplay loop muted playsinline>
  <source src="bgm.mp3" type="audio/mpeg">
  Your browser does not support the audio element.
   </audio>
-
+</div>
     <script>
         // Update current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
