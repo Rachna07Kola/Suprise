@@ -521,9 +521,7 @@ footer::before {
             <p>There are multiple qualities triads that she holds that means a lot and makes a good impression to everyone she knows and meets😊🙈 .</p>
             <p>Forever grateful for your friendship and the precious moments we share.</p>
         </div>
-      <div class="scrolling-image">
-      <img src="Sweetest and Cutest Note.jpeg" alt="Scrolling Image">
-    </div>
+   
     </section> 
     
 <footer>
@@ -535,12 +533,7 @@ footer::before {
     <p>© <span id="current-year"></span> <span id="current-date"></span> | Birthday Celebration's of Best Friend</p>
 </footer>
 
-<div> 
-<audio id="bgm" autoplay loop muted playsinline>
- <source src="bgm.mp3" type="audio/mpeg">
- Your browser does not support the audio element.
-  </audio>
-</div>
+
     <script>
         // Update current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -663,18 +656,7 @@ footer::before {
     month: 'long',
     day: 'numeric'
   });
-    const bgm = document.getElementById("bgm");
-
-    // Try autoplay by unmuting after slight delay
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        bgm.muted = false;
-        bgm.volume = 0.3;
-        bgm.play().catch(err => {
-          console.warn("Autoplay failed:", err.message);
-        });
-      }, 300); // Delay allows some browsers to authorize autoplay
-    });
+ 
 </script>
 </body>
 </html>
