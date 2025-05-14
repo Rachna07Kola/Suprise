@@ -296,10 +296,11 @@ footer::before {
   <div class="right-sheet"></div>
 </div>
 <div id="mainContent" class="fade-in-content">
-      <audio id="bgm" autoplay loop>
-    <source src="HBD.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+
+<audio id="HBD" autoplay loop>
+<source src="HBD.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 
     <header>
         <div class="header-content">
@@ -620,7 +621,7 @@ footer::before {
   });
     window.addEventListener("DOMContentLoaded", function () {
       const bgm = document.getElementById("bgm");
-      bgm.volume = 0.2; // Adjust volume between 0.0 and 1.0
+      bgm.volume = 0.5; // Adjust volume between 0.0 and 1.0
       bgm.play().catch((e) => {
         console.log("Autoplay blocked by browser:", e);
       });
