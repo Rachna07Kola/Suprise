@@ -275,8 +275,6 @@ footer::before {
   opacity: 0;
   transition: opacity 1.5s ease;
 }
-
-    
     </style>
 </head>
 <body>
@@ -487,11 +485,10 @@ footer::before {
     <p>© <span id="current-year"></span> <span id="current-date"></span> | Birthday Celebration's of Best Friend</p>
 </footer>
 
-  <audio autoplay loop playsinline muted id="bgm">
-    <source src="bgm.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
+ <audio id="bgm" autoplay loop muted playsinline>
+ <source src="bgm.mp3" type="audio/mpeg">
+ Your browser does not support the audio element.
   </audio>
-
 
     <script>
         // Update current year
@@ -617,15 +614,15 @@ footer::before {
   });
     const bgm = document.getElementById("bgm");
 
-    // Unmute and play after a tiny delay (trick for some browsers)
+    // Try autoplay by unmuting after slight delay
     window.addEventListener("load", () => {
       setTimeout(() => {
         bgm.muted = false;
-        bgm.volume = 0.2; // Optional: set soft volume
+        bgm.volume = 0.3;
         bgm.play().catch(err => {
-          console.warn("Autoplay failed:", err);
+          console.warn("Autoplay failed:", err.message);
         });
-      }, 200);
+      }, 300); // Delay allows some browsers to authorize autoplay
     });
 </script>
 </body>
