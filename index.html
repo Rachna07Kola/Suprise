@@ -297,11 +297,6 @@ footer::before {
 </div>
 <div id="mainContent" class="fade-in-content">
 
-<audio id="HBD" autoplay loop>
-<source src="HBD.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
-
     <header>
         <div class="header-content">
             <h1>Happy Birthday Best Friend 😊</h1>
@@ -492,9 +487,10 @@ Your browser does not support the audio element.
     <p>© <span id="current-year"></span> <span id="current-date"></span> | Birthday Celebration's of Best Friend</p>
 </footer>
 
-<!--<script>
-    document.getElementById("current-year").textContent = new Date().getFullYear();
-</script>-->
+  <audio autoplay loop playsinline muted id="bgm">
+    <source src="bgm.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
 
 
     <script>
@@ -619,12 +615,17 @@ Your browser does not support the audio element.
     month: 'long',
     day: 'numeric'
   });
-    window.addEventListener("DOMContentLoaded", function () {
-      const bgm = document.getElementById("bgm");
-      bgm.volume = 0.5; // Adjust volume between 0.0 and 1.0
-      bgm.play().catch((e) => {
-        console.log("Autoplay blocked by browser:", e);
-      });
+    const bgm = document.getElementById("bgm");
+
+    // Unmute and play after a tiny delay (trick for some browsers)
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        bgm.muted = false;
+        bgm.volume = 0.2; // Optional: set soft volume
+        bgm.play().catch(err => {
+          console.warn("Autoplay failed:", err);
+        });
+      }, 200);
     });
 </script>
 </body>
