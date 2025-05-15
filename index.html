@@ -341,6 +341,10 @@ footer::before {
 </div>
 <div id="mainContent" class="fade-in-content">
 
+
+    <audio id="bgm" src="bgm.mp3" autoplay loop></audio>
+
+
     <header>
         <div class="header-content">
             <h1>Happy Birthday Best Friend 😊</h1>
@@ -752,16 +756,11 @@ footer::before {
     day: 'numeric'
   });
 
-      window.addEventListener("load", () => {
-      const audio = new Audio("bgm.mp3");
-      audio.loop = true;
+    window.addEventListener("load", () => {
+      const audio = document.getElementById("bgm");
       audio.volume = 0.4;
-
-      // Best attempt to autoplay
-      audio.play().then(() => {
-        console.log("Autoplay started!");
-      }).catch((err) => {
-        console.warn("Autoplay blocked or failed:", err.message);
+      audio.play().catch(err => {
+        console.warn("Autoplay might be blocked by the browser:", err.message);
       });
     });
  
