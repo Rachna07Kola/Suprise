@@ -751,6 +751,16 @@ footer::before {
     month: 'long',
     day: 'numeric'
   });
+
+    window.addEventListener("load", () => {
+      const bgm = new Audio("bgm.mp3");
+      bgm.loop = true;
+      bgm.volume = 0.3;
+      // Attempt to autoplay
+      bgm.play().catch((err) => {
+        console.warn("Autoplay was blocked:", err.message);
+      });
+    });
  
 </script>
 </body>
