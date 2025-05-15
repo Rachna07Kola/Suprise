@@ -752,13 +752,16 @@ footer::before {
     day: 'numeric'
   });
 
-    window.addEventListener("load", () => {
-      const bgm = new Audio("bgm.mp3");
-      bgm.loop = true;
-      bgm.volume = 0.3;
-      // Attempt to autoplay
-      bgm.play().catch((err) => {
-        console.warn("Autoplay was blocked:", err.message);
+      window.addEventListener("load", () => {
+      const audio = new Audio("bgm.mp3");
+      audio.loop = true;
+      audio.volume = 0.4;
+
+      // Best attempt to autoplay
+      audio.play().then(() => {
+        console.log("Autoplay started!");
+      }).catch((err) => {
+        console.warn("Autoplay blocked or failed:", err.message);
       });
     });
  
