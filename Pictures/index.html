@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday to My Best Friend!</title>
+    <style> 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #3f87a6, #ebf8e1, #f69d3c);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: url('/api/placeholder/800/600') center/cover no-repeat;
+            position: relative;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px #ff4da6;
+            }
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar.visible {
+            transform: translateY(0);
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .chapter-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .chapter-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #f69d3c;
+        }
+        
+        .scroll-text {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+            font-size: 1.2rem;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scroll-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f69d3c;
+            animation: confetti-fall 5s ease-in infinite;
+            z-index: 999;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .birthday-cake {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+ footer {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+footer p:first-child {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #ffcccb;
+}
+
+/* Sparkle background effect */
+footer::before {
+    content: '';
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    left: 50%;
+    top: 80%;
+    animation: float 4s infinite ease-in-out;
+    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 85% 22%, 87% 35%, 80% 45%, 50% 75%, 20% 45%, 13% 35%, 15% 22%, 25% 12%, 39% 12%);
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* Random variations */
+.heart:nth-child(1) { left: 40%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 60%; animation-delay: 1s; }
+.heart:nth-child(3) { left: 50%; animation-delay: 2s; }
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { transform: translateY(-40px) scale(1.1); opacity: 1; }
+    100% { transform: translateY(-80px) scale(0.9); opacity: 0; }
+}
+
+        
+        #section1 { background: linear-gradient(135deg, #FDEB71, #F8D800); }
+        #section2 { background: linear-gradient(135deg, #ABDCFF, #0396FF); }
+        #section3 { background: linear-gradient(135deg, #FEB692, #EA5455); }
+        #section4 { background: linear-gradient(135deg, #CE9FFC, #7367F0); }
+        #section5 { background: linear-gradient(135deg, #90F7EC, #32CCBC); }
+        #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
+
+    p {
+      color: #333;
+      font-size: 1.3rem;
+    }
+.sliding-sheet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 10000;
+  background: #000;
+  pointer-events: none;
+}
+
+.left-sheet, .right-sheet {
+  width: 50%;
+  height: 100%;
+  background: #000;
+}
+
+.left-sheet {
+  animation: slideLeft 2.5s forwards;
+}
+
+.right-sheet {
+  animation: slideRight 2.5s forwards;
+}
+
+@keyframes slideLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes slideRight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+.fade-in-content {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+     .section-container {
+      display: flex;
+      align-items: center; /* Vertically align */
+      justify-content: space-between;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+    }
+
+    .text-content {
+      flex: 1;
+      padding-right: 20px;
+      font-size: 18px;
+    }
+
+    .scrolling-image {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0; /* Prevent image from shrinking */
+    }
+
+    .scrolling-image img {
+      position: absolute;
+      animation: scrollUp 6s linear infinite;
+      width: 100%;
+    }
+
+    @keyframes scrollUp {
+      0% { top: 100%; }
+      100% { top: -100%; }
+    }
+
+    /* Optional: Responsive behavior */
+    @media (max-width: 768px) {
+      .section-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .text-content {
+        padding-right: 0;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+    }  
+
+
+    .carousel {
+      display: flex;
+      width: fit-content;
+      animation: scroll 30s linear infinite;
+    }
+
+    .carousel img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      margin-right: 10px;
+      border-radius: 10px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <a href="#section1">Chapter 1</a>
+        <a href="#section2">Chapter 2</a>
+        <a href="#section3">Chapter 3</a>
+        <a href="#section4">Chapter 4</a>
+        <a href="#section5">Chapter 5</a>
+        <a href="#section6">Chapter 6</a>
+        <a href="#section7">Chapter 7</a>
+        <a href="#section8">Chapter 8</a>
+    </nav>
+    
+    <div class="sliding-sheet" id="slidingSheet">
+  <div class="left-sheet"></div>
+  <div class="right-sheet"></div>
+</div>
+<div id="mainContent" class="fade-in-content">
+
+
+    <audio id="bgm" src="bgm.mp3" autoplay loop></audio>
+
+
+    <header>
+        <div class="header-content">
+            <h1>Happy Birthday Best Friend 😊</h1>
+            <p style="font-size: 1.5rem;">Welcome to my world, where I would to celebrate birthday of dearest friend, whose care is unmeasurable😊, affection is precious😊, journey is an inspiration😊, concern for her beloved is unconditional😊.</p>
+            <div class="birthday-cake">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <!-- Cake base -->
+                    <rect x="50" y="120" width="100" height="60" fill="#A67C52" rx="5" ry="5" />
+                    
+                    <!-- Cake middle layer -->
+                    <rect x="40" y="80" width="120" height="40" fill="#D4A76A" rx="5" ry="5" />
+                    
+                    <!-- Cake top layer -->
+                    <rect x="60" y="50" width="80" height="30" fill="#F9E4B7" rx="5" ry="5" />
+                    
+                    <!-- Candles -->
+                    <rect x="80" y="20" width="5" height="30" fill="#FF6B6B" />
+                    <rect x="100" y="15" width="5" height="35" fill="#4ECDC4" />
+                    <rect x="120" y="20" width="5" height="30" fill="#FFD166" />
+                    
+                    <!-- Flames -->
+                    <ellipse cx="82.5" cy="15" rx="5" ry="8" fill="#FFD166" />
+                    <ellipse cx="102.5" cy="10" rx="5" ry="8" fill="#FF6B6B" />
+                    <ellipse cx="122.5" cy="15" rx="5" ry="8" fill="#4ECDC4" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+<header>
+  <div class="carousel">
+    <!-- Repeat images for seamless loop -->
+    <img src="https://picsum.photos/id/1015/300/200" alt="1">
+    <img src="https://picsum.photos/id/1016/300/200" alt="2">
+    <img src="https://picsum.photos/id/1018/300/200" alt="3">
+    <img src="https://picsum.photos/id/1020/300/200" alt="4">
+    <img src="https://picsum.photos/id/1024/300/200" alt="5">
+    
+    <!-- Repeat again for smooth looping -->
+    <img src="https://picsum.photos/id/1015/300/200" alt="1">
+    <img src="https://picsum.photos/id/1016/300/200" alt="2">
+    <img src="https://picsum.photos/id/1018/300/200" alt="3">
+    <img src="https://picsum.photos/id/1020/300/200" alt="4">
+    <img src="https://picsum.photos/id/1024/300/200" alt="5">
+  </div>
+</header>
+    
+    
+    <section id="section1" class="section">
+        <h2 class="chapter-title">Chapter 1: The Smile that Started It All</h2>
+        <div class="scroll-text">
+            <p>I would like to cherish the day, when I was welcomed with a bright smile. </p>
+            <p>I have ever meet, she simply understands the pain or happiness in one’s eyes and try to find the solutions.</p>
+            <p>I feel so happy, to spend time, talk with her. If I solve aleast some of her problems, I feel that I have reduced some portion of her tasks from her routine.</p>
+            <p>She patiently sits along and hears my thoughts and she prays that I need to be happy 😊.</p>
+            <p>As we started knowing each other, I understood that she is the kindest person.</p>
+            <p>I will definitely cherish your affection 😇 😇 . I’m blessed, fortunate enough to meet you 😍 . I felt, I have her😍 😍 .</p>
+        </div>
+  </div>
+    </section>
+
+    <section id="section2" class="section">
+        <h2 class="chapter-title">Chapter 2: My Cheer Leader</h2>
+        <div class="scroll-text">
+            <p>Every time we cook together or observe her cooking , learn something new as she is so good in cooking. She tries her best to make delicious food for her beloved and she keeps the efforts.</p>
+            <p>If I would given a chance, I would write pages of details about her qualities that inspires herfriends and beloved ones.</p>
+            <p>I’m so blessed, I don’t even know. How can a person be so sweet and understanding 😇🙈.</p>
+            <p>She is one of sweetest, kindest and most caring person I have ever meet😇🙈.</p>
+            <p>It was day, when I tried making customized key chain. I was not able to complete key keychain.</p>
+            <p>She helped me, to fix it. It was the day when I felt she is so understanding.</p>
+            <p>I get inspired by way she cares about her beloved family and friends 😇🙈.</p>
+            <p>I learn some or other things every time I meet her😊.</p>
+            <p>On 13th April, we are an ice cream. Flavored chocolate brownie fudge and milk and cookies.</p>
+            <p>It was day when my day has being filled with happiness and sweetness 😊🙈.</p>
+            <p>Sweetness was resumed back to my life 🙈😇.</p>
+            <p>We also had a lunch together 🙈.</p>
+            <p>On 14th April, it was a day. When we had a coffee break 😇, it was time that added joy to my day.</p>
+            <p>It was first time, go out with friend to share a cup of ice cream favored Lavander with a brownie😊.</p>
+            <p>On 15th April, I received a box filled with affection to make my day more special.</p>
+            <p>I did not have anyone who cared about meals like you did😍🙈.</p> 
+            <p>After my mom, it was you who understood me and myself and treated so well🥰🙈.</p>
+            <p>On 26th April, 2025.It was day, Harshitha, told me.., three things.</p>
+            <p>1. Please, I understand you have concern towards me, but it’s being projected differently towards everyone. She was correct, I expressed, it’s happening. People are asking her, are mistreating her concern ani, she is being asked because of my actions. I will definitely make sure, from now on, 9:38 pm. I will not do anything that will cause an inconvenience for her. I will definitely control myself to undone some of actions that arise to a question.</p>
+            <p>2. Parents, she has been asking me to care good care of them. Be nice with them. Communicate without raising your voice towards them, as they are everything for you. Your highest priority should be them.</p>
+            <p>3. Career, she is motivating me to concentrate on your job search. If you want things to fall in place. You need to have a good job.</p>
+            <p>Overall conversation, I have to be watchful, before expressing any concerns or affections towards Harshitha😊 . Communicate carefully before talking to parents. Focus on your career.</p>
+            <p>20th April, it was the day when how can a friend be this selfless 😇 🎊 ❤ .</p>
+            <p>I only wish harshitha asked for her birthday as present is a good job for me🙈 😍 . I’m blessed, fortunate to have her😇 . I will definitely try best to make that her wish’s come true 😊 .</p>
+            <p>If I get a job, I will be good, she is not expecting anything in return. She expresses beautifully her concern through her actions and words. She is definitely a blessing for all of her friends and family 😊 😍 🙈 .</p>
+            <p>We are in the world, where is no concept of “we rise by lifting others”. But she is trying to express that we can, try to implement, the concept with smaller actions.</p>p
+            <p>I believe she is trying to make sure, I be independent and remove all my barriers and be able to handle all my responsibilities well.</p>
+            <p>On 22nd April, it’s a day when I receive a call from Harshitha about a guest lecture.</p>
+            <p>She is always thinks about everyone’s needs and unfortunately she needs to hear words that does not belong to her and she stays silent without responding back to people 😊 .</p>
+            <p>It was day, when I felt she is thought it would be helpful for me. I love thought 😍 of texting and calling me about the lecture 😊 .</p>
+            <p>I always want to cherish all her personality traids and wish to learn if I miss out anything 🙈 😇 .</p>
+            <p>I always admire her for help towards her friend made me feel inspired from her😍 .</p>
+            
+        </div>
+    </section>
+
+    <section id="section3" class="section">
+        <h2 class="chapter-title">Chapter 3: My Happy Place</h2>
+        <div class="scroll-text">
+            <p>We went to temple, last year on 23rd December 2023, was the day, when harshitha came to USA to pursue her dreams, I was so happy to accompany her on this specail day.</p>
+            <p>Every time we cook together or observe her cooking , I learn something new as she is so goodin cooking. She tries her best to make delicious food for her beloved and she keeps the efforts.</p>
+            <p>If I would given a chance, I would write pages of details about her qualities that inspires her friends and beloved ones.</p>
+            <p>I think, it was 02 April, we had a small silence of not communicating🥺 about 20 mins as I forgot to give Harshitha one of the favorites (ring papad).</p> 
+            <p>It was first I experienced, how difficult it will be to handle the silence from your dear friend.</p>
+            <p>But, I believe, if I can hold on to these silences now. I can handle these situations, I don’t want these silence increase🥺😇.</p>
+            <p>I want to cherish her friendship forever 😇</p>
+            <p>8:40 pm on April 06, is the first time I was told that I hate you ani🙈😍. I hate you🙈 is more special than I love you😊</p>
+            <p>On 4/29/2025. It was day, when I realized “whenever we express our angry, in an argument, the people who is on the receiving end will not understand the essence of the context behind the anger”.</p>
+            <p>So I felt, it always better to control the anger in an argument.</p>
+            <p>At 2 pm, Portfolio got executed and only some of the changes like updating the details about the career and other things.</p>
+        </div>
+    </section>
+
+    <section id="section4" class="section">
+        <h2 class="chapter-title">Chapter 4: My Secert Keeper</h2>
+        <div class="scroll-text">
+            <p>We might not have pictures, together. But we memories that last with me forever and ever.</p> 
+            <p>I understand, I have given her trouble with my actions that express a much caring on her, in front of her friends, but she patiently accepts my mistakes, I will be grateful for accepting my behaviour, I have being trying not make any more mistakes, that makes her uncomfortable.</p>
+            <p>I feel, I should have met her before so that I could get more time to understand more things about her😊.</p>
+            <p>I’m blessed to have a friend like her😇</p>
+            <p>It was first time, I was given a cutest nicknames such as miracle, quesadilla, rosey, potato, rachu, alpaca.</p>
+            <p>I feel so good whenever she calls Oyy🙈😇.</p>
+            <p>Even without expressing, Harshitha understood me completely. I feel so much fortunate to have her as my friend.</p>
+            <p>She is like a family that I can trust😇.</p>
+            <p>It was the first, she carried my bag from pantry hall to library. Even though she had 5 hours of shift and she expressed her concerns for me, With her patience, she told me to discard all unnecessary things from my backpack. as it might not be good to for me.</p>
+            <p>It was first time we went to drink boba tea at Taiyaki sweets in denton. It was my first time going out with friend 😊 🙈</p>
+            <p>It was first time, I had my brows well done. It was first time. I saw Harshitha, happy. I also felt happy to spend time.</p>
+            <p>I wish she should be my sister in the next life 🙈😇 that’s wish I have😇😍</p>
+            <p>It was the evening when I my hands got shine on with the precious art work of her😍 🙈 .</p>
+            <p>My heart, just paused for a minute, when I heard a question for that, Rachna I’m a using you for making my things happens. I felt, to shout to out to entire world. Why does the universe always do something, as breaker every single time.</p>
+            <p>I was silent, before I did not want to make things more complicated for Harshitha. At the same time, we know, how much we care for our friendship. We might not express it in words, but in the terms of actions we show each other how much we care about of our friendship ❤ . I always believe Harshitha😊 .</p>
+            <p>I’m fortunate to have a friend like her.</p>
+            <p>Every single time, we meet, walk, study and spend time we do it with all our heart. We never felt, in any of us that we are taking the misuse of the concerns and affection that we have for both of us.</p>
+            <p>I definitely, understand. It might be equally harder for Harshitha to ask questions like this to me.</p>
+            <p>I understand, that she wanted to express that they are people in the world, where they don’t understand anything and just comment on the things that are working well and perfect. I understand…., but I genuinely want your friendship.</p>
+            <p>Everytime, I try to express my concern towards Harshitha, I don’t know how much I’m making her feel happy, but there are always questions arising. I don’t why, I feel, my concern towards her, is also causing her troubles.</p>
+            <p>Papam kada, Nakosam, she is facing all questions, because of actions. Since childhood, had many friends but no one made efforts to hold me. But Harshitha, is making efforts for me.</p>
+            <p>I want to cherish, in this process. I’m making her hear a lot of questions because of me. I don’t know, I’m just scared..If these all pile up and cause a reason to end our friendship.</p>
+            <p>I want to stay along with her as her friend, with whom she can share anything. I will definitely stand by her no matter what happens.</p>
+            <p>With all my heart, Harshitha’s Friendship is very precious for me 😇 . No one can ever understand me like her, knows me, shows concern on me.</p>
+            <p>She always my precious charm😇 . That I want to always cherish and make sure she is happy always and in every moment.</p>
+            <p>I’m not able to express, how lucky I’m to have her friendship. But I will never ever forgot how precious she made me feel through her friendship😊 .</p>
+            <p>I just want to make sure, I don’t do anything that makes her feel uncomfortable. No mistakes, and no compromise in making her feel happy😊 .</p>
+            <p>Just a few days of silence, i will be there 😊 . I understand, I trust her😍 . Utill then, I will continue to cherish and recall the time we spent😇 .</p>
+            <p>I understand.., we understand each other so well. I have also planned a small surprise for her🎊 😇 .</p>
+            <p>I understand, Harshitha was concerned about me😊 .She doesn’t like anyone saying anything, I really appreciate it. Happiest Bestie day😊 😇 Dear harshitha😍 .</p>
+            <p>Nijagama, na life nakosam😇 , I was blushing, I have someone who can just run to handle me 😇 😇 .</p>
+            <p>You came out running today morning to protect me😍 .</p>
+            <p>Her presence, made me feel like home.</p>
+        </div> 
+    </section>
+
+    <section id="section5" class="section">
+        <h2 class="chapter-title">Chapter 5: Laughter in the Stars</h2>
+        <div class="scroll-text">
+            <p>One day, we were walking to explore the pleasant climate and I got pleasant present from her, she purchased me a cute panda as she remembers I like my panda.</p>
+            <p>As present, I also got a lion 🦁 phone case for my phone. I felt so happy, I felt there is also a person who remembers my favorites and purchases for me 😇.</p>
+            <p>Our First seflie was made into a gibli portraits, I'm gonna chersih this picture forever and I take good care about it</p>
+            <p>It was first time, it was so great to watch movie,called trap at Lyceum.</p>
+            <p>It was first time we went out to have dinner together.</p>
+            <p>I think it was 4th of December, it was the first time we had a breakfast together at which wich restaurant.</p>
+            <p> On 11th April, we had our first/second lunch together. It was day, I felt even I have someone who cares about my healthy lifestyle and also wants me to explore multiple cuisines.</p>
+            <p>I felt, if the time would pause for a minute. I would cherish time as it was so precious and special.</p>
+            <p>There are multiple moments that we shared, I have been missing out out to added them as per the timelines of occurrence of the moments🥰🥰</p>
+            <p>It was the day, when we shared smiles on the back from grocery store, that was first time.</p>
+            <p> I felt how one’s presence can refresh your day😍.</p>
+            <p>I felt, spending time with your best friend refreshes your day and adds shine to your day 😇.</p>
+            <p>It was in the month of December, we had a dinner at desi chowrastha, during the travel in the cab, we watch happy days movie😊 .</p>
+            <p>On 17th April,2025. It was day, when we went out on shopping😇 , Cutest conversation, when Harshitha, said Cinderella Treatment 😊 😇 aa🙈🙈 . We explored multiple dresses for Manasa’s Graduation😇 .We had pretzels, jalapenos and sweet almond😊 .</p>
+            <p>On 19th April, it was the day. Harshitha, is my first friend who had added Mehendi to my hands🙂. I felt so happy, 🙈</p>
+            <p>On 19th April, 2025.It was day, when we both ran across the street as it was raining so hard.</p>
+            <p>It was day when we went to visit the new target that was opened.</p>
+            <p>It was also day, where my actions made her feel uncomfortable. I have never meet someone who never judged me.</p>
+            <p>She is only one who understood me, for what I’m. She is always be there for me, without even seeking her help😊. She understands, my silence and figured that I’m not feeling well 🙈 . </p>
+            <p>She observes me and understands me 😇</p>
+            <p>I have lost a lot of things, but I cannot afford loosing her and her friendship as it very precious for me 😍 😇 .</p>
+            <p>On 23rd April, it was day. When I made Harshitha, feel sad , by actions of keeping things like chocolate cover, checks from restaurants.</p>
+            <p>She likes that cherish them, it is not that comfortable for us if any one questions me, for having them on phone case. I understand and immediately removed them from my phone. I felt so bad.</p>
+            <p>It was also the day, when we had a call conversation 🙈 . It was also a day, when I did not want anyone to simple say, you went to her class aa, Then I need to support and protect my friend.</p>
+            <p>She will only ask help when she really needs, but not always, in order to make them understand I told them. I’m not understanding, the same day, we spend time very well and at the same day I mess up and I’m troubling her to handle it. I don’t know why it’s happening like this., Everytime I feel, I should not mess up, I do if every time.</p>
+            <p>After so long, I found a friend who truly cares, understands me. I have made her feel uncomfortable with my every action. I feel so sad, I’m not able to make things fall in place.</p>
+            <p>Every time I try to do something, it just seems not working out.</p>
+            <p>I believe her, trust her and admire her. I just wish to be a good friend of her, whom she can trust, I can be her listener. You are the best 😍 , I’m blessed to be your bestie 😊 😇 . I’m confident, one ever would understand me, like you did 😇 .</p>
+            <p>I’m always grateful for her friendship and I want to cherish her forever 😊 I understand, there will be a time, where everything doesn’t fall in place and I need to give some space so that it’s never gonna be a end of it kada, I will definitely hold on to our friendship and I will let it go 😊 . It’s only situation, as it get better. We will get our time back😊 . I trust her❤</p>
+            <p>I never wanted to hide any actions, with anyone about my friendship with Harshitha, it’s that every time, I express any concern towards her, there are some questions been arises. I just did not want any more further questions, because harshitha has much more things to handle. I did not want her to feel uncomfortable.</p>
+            <p>That’s was one of the reasons why I always try to support her in every situation discussion. Because I want to protect our friendship. I never wanted to hide the friendship that share. Because, I did not want Harshitha to face any inconvenience because of my actions.</p>
+            <p>Even if I don’t make happy, it’s okay. I will definitely try again. If I make her feel uncomfortable then I will be feeling most sad. Because, she is the one who understands me, when the one I’m grateful to😇 .That’s the reasons I want to support and I wish to see her happy always. I will be curious to make things works for her, so that she should not try much harder to achieve anything.</p>
+            <p>There will always be situations, where I cannot handle behalf her. But there will be always a situation where I can definitely help her, I just don’t want miss any opportunities to stand by her and help her out.</p>
+            <p>It was the day, when I thought, I want to make sure, I can try fulfilling all her wishes to achieve. In that process, accidentally I have kept in a spot.
+            <p>I received a call from home, when they did not understand, where I was. I really did not want to give a chance to talk to her, because. It’s not professional, in situations where parents are not understanding you and When there are insisting you, to make you talk to your friends. It’s not a good choice. You need to handle it. Unnecessary she had to hear things.</p>
+            <p>Every time, I try to make feel better, there will be always something interrupting. Nijamaga, I’m acting any affection or concern. Every actions is from heart. I really want to stay with you as your best friend.</p>
+            <p>Yesterday, Harshitha asked me, Nijamga veltava.. ani. Ledu ra, I will not leave you and go ra.. kani, I should I get you any word kada.. before of my actions.I want any anyone to question you.. for my silly actions. I have felt, because of my actions, there is a person getting into trouble, unintentionally.</p>
+            <p>You are my lucky charm 😇 , you are my bestiee😇 . I would never want to lose you ❤ .</p>
+            <p>April 24, It was a day, when we couldn’t get time to talk with each other. I understand, the semester is almost completed so, it’s a busy week😊 .</p>
+            <p>I wish her all the best for her semester exams and I also wish she gets an intership so quickly so that she can stop working at begals store as it’s making her tried.</p>
+            <p> will definitely make sure she gets an internship very soon.</p>
+             <p>I will definitely cherish .</p>
+        </div>
+    </section>
+
+    <section id="section6" class="section">
+        <h2 class="chapter-title">Chapter 6: My Safe Place</h2>
+        <div class="scroll-text">
+            <p>I would also like to add, with her patience she has made me understand, how well a lady can make her self look pretty by adding basic care about oneself.</p>
+            <p>I’m implementing her ideas to look better in an occasional togethers. I would say, she is understands silence and happiness in oneself with expressing. She is really blessing🙈 I would like it cherish all of these, moments.</p>
+            <p>It’s always so cute to learn cooking skills from her, patiently she makes sure, I understand the process and makes it easier for me to cook for myself 🙈 😇 .</p>
+            <p>She really has a magic in her hands, she cooks so delicious food for us. In Sanskrit we say, Annadata Sukhi Bhav😇😍.</p>
+            <p>I felt, so good every time she stood by me, she become my voice, whenever I was left with no words to express my thoughts.</p>
+            <p>It was first time, a friend made an effort to make me eat health, when I was a bit hesitant to eat, she held my hand and said it’s okay to I’m here, I can help you and she took the spoon, she said please eat healthy, I’m worried about you 😇🥰. I felt, she is read me completely😊.</p>
+            <p>It’s so cute whenever she expresses her happiness whenever she viists her favorite place to shop, spend time.</p>
+            <p>It's place where she feels refereshs and I feel so happy to see her refereshed after a long week of studying🙈😊.</p>
+            <p>I want her to be always happy 😊 and smiling😇</p>
+            <p>With all my heart😇 , I made my third Piercing</p>
+            <p>I feel happy 😊 that Harshitha was with me, it’s an extra special moment 😇🙈. It was most special day😍🙈.</p>
+            <p>I would like cherish this piercing as a sign of your friendship 😊😇. It will always be with me🙈😇</p>
+            <p>I also left sad, that Harshitha’s nose piercing did not work well. I feel so bad. It was also my decision of encouragement🥺🥺.</p> 
+            <p>All of her efforts, time and energy every time, she wants to make something happen it’s will also has some difficulties included 🥺.</p>
+            <p>I always feel she needs to make all her dreams come true 😍 😍 .</p>
+            <p>21th April, It was day, when my Wallpaper got updated to mom and dad’s picture. Harshitha’s contact information got reset to general information.</p>
+            <p>I was confused, I did not know how to communicate. I felt, I need to give her some space and time.</p>
+            <p>In a friendship, patience plays a vital role 😍 . I can handle anything 😊 . </p>
+            <p>I thought, she felt that she might be giving me a hard time, but it’s me who also give her trouble and she handles it with almost patience. She never asked me, why do you.. ani.</p>
+            <p>She is always thinks good for me, but she always has hear a lot of things because of me in front of her friends.</p>
+            <p>I don’t kmow, every single time. I try to handle things. I end up messing up things and make things more complicated for her to handle.<p>
+            <p>May to make me realise things, and make more responsible. She took a step to update the contact information.</p>
+            <p>I have no problem in changing the contact information. I always, respect her, admire her and learn from her. Nothing is gonna change 😊 .</p>
+            <p>It was the first time, I went to Starbucks to get coffee for us and Rakshitha. It was great experience😊 .</p>   
+            <p>I felt, every time. I spend time or study together 😊</p>
+            <p>I just want to be there, for you to share your troubles.</p>
+            <p>If you ever need a friend to share your thoughts, will definitely listen to them and I can even sit next to just to make sure you are not alone.</p>
+            <p>Before, you understand, you used to share your thoughts, but due to some reasons, you are not able to share in, so I want to be there as your good listener.</p>
+            <p>I believe, since the day I meet you, I know how sweet,kind and caring you are for me, after all your friends.</p>
+            <p>I love the way you care for your family, I thought I need to learn from her. You are a lucky charm for everyone, more specifically to me😇 🙈 .</p>
+            <p>It was also day, when I was presented a beautiful, precious cup that hand crafted by my bestie😍 😇 . Entire life, I was never presented any gifts that are hand crafted😊 I’m felt, so happy.</p>
+            <p>Equally I left bad, after a long shift. After handling her other tasks and sorting out things.</p>
+            <p>I love the efforts Harshitha kept to present the cup, won me😊 😇 .</p>
+            <p>I will always remember and cherish the way she expressed her friendship😇 😍.</p>
+         
+
+        </div>
+    </section>
+    
+    <section id="section7" class="section">
+        <h2 class="chapter-title">Chapter 7: Journey</h2>
+        <div class="scroll-text">
+            <p>I’m so happy, on 4th April, Harshitha received her new badge as she completed 2500 points on the Einstein bro begals training sessions and she got an appreciation from her manager and I’m happy to see her happy and I want her to achieve all her dreams😊</p>
+            <p>It was the first time, Harshitha, had a vegetarian burger at chick flia a.</p>
+            <p>I’m so blessed to have her, I will definitely cherish her friendship as it was so precious to me.</p>
+            <p>It was a time, when I felt I will never find a good friend, as power of destiny made me meet her and make me feel there is a good friend, who can make me feel better and good.</p>  
+            <p>11th April, 2025. It was a great initiative, that we signed up with gift of life organization, to help cancer patients. It was one of best and special activities we had participated 😇😇.</p>
+            <p>I will be always feel grateful spending time with her and I was heart-fully thank for god for providing me opportunities to meet and connect with her and get to know more about her 🙈😇.</p>
+            <p>I felt, spending time with your best friend refreshes your day and adds shine to your day 😇.</p>
+        </div>
+    </section>
+    
+    <section id="section8" class="section">
+        <h2 class="chapter-title">Chapter 8: Precious Treasure</h2>
+        <div class="scroll-text"
+            <p>On 12th April, I was received a best hand written, with lots of affection from Harshitha.</p>
+            <p>I was never written a note, this note is very precious for me.</p>
+            <p>It was the day, I felt, I have someone who cares for me too. I felt so happy 😊 .</p>
+            <p>I’m so blessed to have her, I will definitely cherish her friendship as it was so precious to me.</p>
+            <p>I felt, there is a girl, who is keeping efforts to express her friendship towards me😊 .
+            <p>In this note of affection, I was asked, I don’t know what made you make me your best friend, I’m not as perfect.</p>
+            <p>Here is the reponse,</p>
+            <p>I will always choose you, because.</p>
+            <p>After my mom, you are only one who takes care of my thyroid condition,that made me feel so special, I have you 😊.</p>
+            <p>Every single time we go out to have some type of meal, you will make sure that’s safe for me.</p>
+            <p>I remember how beautifully you have treated me 🥰.<p>
+            <p>I feel so happy 🙈🥰 for all your family and friends to have you as your the most precious😇, kind 😇 and care 😇 you have towards you your people.</p>
+            <p>You understand people so well 😊 , there multiple personalities triads that made me feel admirable 😊😇.</p>
+            <p>You are perfect in every aspect😊. I believe in that😇</p>
+            <p>I never met, someone like her. As I feel, if I would get her a my sister.</p>
+            <p>I would definitely cherish her as its most precious bond 😊🙈.</p>
+            <p>On April 01, we celebrated Ugadi festival. </p>
+            <p>I came to know, that we share the same zodiac sign🙈😇.</p>  
+            <p>I felt so happy😊😇.</p>
+            <p>It was the day, when I was presented my favourite drink mountain drew and sun chips garden salasa 😊 🙈.</p>
+            <p>I like the way she remembers smallest details and give you presents it’s most valuable traid that she hold🙈 .</p> 
+            <p>There are multiple qualities triads that she holds that means a lot and makes a good impression to everyone she knows and meets😊🙈 .</p>
+            <p>Forever grateful for your friendship and the precious moments we share.</p>
+            <p>If given a chance, I would make sure all your worries go away and only ultimate happiness surrounds you 😇 . I’m here, to stand by you, you can always share your thoughts 😊 .</p>
+        </div>
+   
+    </section> 
+
+           
+  
+     
+    
+<footer>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
+    <p>More than a friend, you're family. Your presence is a gift, your friendship a blessing❤️</p>
+    <p>© <span id="current-year"></span> <span id="current-date"></span> | Birthday Celebration's of Best Friend</p>
+</footer>
+
+
+    <script>
+        // Update current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Navbar visibility control
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > window.innerHeight * 0.8) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+        
+        // Scroll text animation
+        const scrollElements = document.querySelectorAll('.scroll-text');
+        
+        const elementInView = (el, percentageScroll = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= 
+                ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const hideScrollElement = (element) => {
+            element.classList.remove('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 80)) {
+                    displayScrollElement(el);
+                } else {
+                    hideScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize
+        handleScrollAnimation();
+      // Wait for page to load
+  window.addEventListener('DOMContentLoaded', () => {
+    const curtain = document.getElementById('slidingSheet');
+    const mainContent = document.getElementById('mainContent');
+
+    // Delay showing main content until curtain animation ends
+    setTimeout(() => {
+      curtain.style.display = 'none';
+      mainContent.style.opacity = 1;
+
+      // Start cake layer reveal
+      const layerColors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
+      let currentLayer = 0;
+
+      function addCakeLayer() {
+        if (currentLayer >= layerColors.length) return;
+        const yOffset = 180 - currentLayer * 15;
+        const layer = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        layer.setAttribute("points", `70,${yOffset} 70,${yOffset + 15} 200,${yOffset + 5} 200,${yOffset - 10}`);
+        layer.setAttribute("fill", layerColors[currentLayer]);
+        layer.setAttribute("stroke", "#b7854f");
+        layer.setAttribute("stroke-width", "1");
+        layer.style.opacity = 0;
+        document.getElementById("layers").appendChild(layer);
+        requestAnimationFrame(() => {
+          layer.style.opacity = 1;
+        });
+        currentLayer++;
+      }
+
+      const revealInterval = setInterval(() => {
+        if (currentLayer >= layerColors.length) {
+          clearInterval(revealInterval);
+        } else {
+          addCakeLayer();
+        }
+      }, 800);
+
+      // Start confetti
+      function createConfetti() {
+        const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.animationDelay = Math.random() * 5 + 's';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 5000);
+        }
+      }
+
+      createConfetti();
+      setInterval(createConfetti, 10000);
+
+      // Animate flames
+      const flames = document.querySelectorAll('.flame');
+      setInterval(() => {
+        flames.forEach(flame => {
+          flame.setAttribute('rx', 4 + Math.random() * 2);
+          flame.setAttribute('ry', 7 + Math.random() * 2);
+        });
+      }, 100);
+
+    }, 2700); // Curtain animation duration
+  });
+   const now = new Date();
+  document.getElementById("current-year").textContent = now.getFullYear();
+  document.getElementById("current-date").textContent = now.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+    window.addEventListener("load", () => {
+      const audio = document.getElementById("bgm");
+      audio.volume = 0.4;
+      audio.play().catch(err => {
+        console.warn("Autoplay might be blocked by the browser:", err.message);
+      });
+    });
+ 
+</script>
+</body>
+</html>
