@@ -233,6 +233,26 @@
     </div>
 </header>
 </div>
+      <!-- 🎂 Cake Header -->
+  <header class="cake-header">
+    <div class="cake">
+      <div class="frosting"></div>
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <div class="cake-text">Happy Birthday 🎂</div>
+    </div>
+  </header>
+
+    <!-- 🤖 Robot Section -->
+  <div class="container">
+    <img src="https://i.imgur.com/7YV1FMs.png" alt="Robot" class="robot" id="robot">
+    <div class="speech-bubble" id="message">🎉 Happy Birthday! 🎈🎂</div>
+  </div>
+
+    
     
     <section id="section1" class="section">
         <h2 class="chapter-title">Chapter 1: The Smile that Started It All</h2>
@@ -631,6 +651,11 @@
       autoplay: true,
       path: 'https://assets7.lottiefiles.com/packages/lf20_rwwkrqts.json' // Replace with your own character
     });
+       //Timing 
+
+         setTimeout(() => {
+      document.getElementById('message').style.display = 'block';
+    }, 3000);
 </script>
 </body>
 </html>
