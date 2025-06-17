@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday to My Best Friend :)</title>
+      <script src="https://unpkg.com/lottie-web@5.7.4/build/player/lottie.min.js"></script>
+
     <style> 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -477,10 +479,10 @@
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
-
     <p>More than a friend, you're family. Your presence is a gift, your friendship a blessing❤️</p>
     <p>© <span id="current-year"></span> <span id="current-date"></span> | Birthday Celebration's of Best Friend</p>
 </footer>
+  <div id="robot" style="width: 300px; height: 300px; margin: auto;"></div>
 
  <script>
    window.addEventListener('DOMContentLoaded', () => {
@@ -621,6 +623,13 @@
         const offsetY = (Math.random() - 0.5) * 100;
         createFirework(e.clientX + offsetX, e.clientY + offsetY);
       }
+    });
+         lottie.loadAnimation({
+      container: document.getElementById('robot'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://assets7.lottiefiles.com/packages/lf20_rwwkrqts.json' // Replace with your own character
     });
 </script>
 </body>
