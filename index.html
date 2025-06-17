@@ -5,462 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday to My Best Friend :)</title>
     <style> 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            /*background: linear-gradient(135deg, #3f87a6, #ebf8e1, #f69d3c);*/
-            background: linear-gradient(135deg, #fce4ec, #e0f7fa, #e1bee7);
-            color: #333;
-            overflow-x: hidden;
-        }
-        
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            background: url('/api/placeholder/800/600') center/cover no-repeat;
-            position: relative;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-        }
-        
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            animation: glow 2s infinite alternate;
-        }
-        
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px #ff4da6;
-            }
-        }
-        
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .navbar.visible {
-            transform: translateY(0);
-        }
-        
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .navbar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .section {
-            min-height: 100vh;
-            padding: 80px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .chapter-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .chapter-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: #f69d3c;
-        }
-        
-        .scroll-text {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-            max-width: 800px;
-            text-align: center;
-            line-height: 1.6;
-            font-size: 1.2rem;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .scroll-text.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f69d3c;
-            animation: confetti-fall 5s ease-in infinite;
-            z-index: 999;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .birthday-cake {
-            margin-top: 40px;
-            text-align: center;
-        }
-        
- footer {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: #ffffff;
-    text-align: center;
-    padding: 40px 20px;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-}
-
-footer p {
-    margin: 10px 0;
-    font-size: 1.1em;
-}
-
-footer p:first-child {
-    font-weight: bold;
-    font-size: 1.3em;
-    color: #ffcccb;
-}
-
-/* Sparkle background effect */
-footer::before {
-    content: '';
-    background: url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity: 0.1;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: 0;
-}
-
-/* Floating hearts */
-.heart {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: red;
-    left: 50%;
-    top: 80%;
-    animation: float 4s infinite ease-in-out;
-    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 85% 22%, 87% 35%, 80% 45%, 50% 75%, 20% 45%, 13% 35%, 15% 22%, 25% 12%, 39% 12%);
-    z-index: 1;
-    opacity: 0.8;
-}
-
-/* Random variations */
-.heart:nth-child(1) { left: 40%; animation-delay: 0s; }
-.heart:nth-child(2) { left: 60%; animation-delay: 1s; }
-.heart:nth-child(3) { left: 50%; animation-delay: 2s; }
-
-@keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 0.9; }
-    50% { transform: translateY(-40px) scale(1.1); opacity: 1; }
-    100% { transform: translateY(-80px) scale(0.9); opacity: 0; }
-}
-        
-        /*
-        #section1 { background: linear-gradient(135deg, #FDEB71, #F8D800); }
-        #section2 { background: linear-gradient(135deg, #ABDCFF, #0396FF); }
-        #section3 { background: linear-gradient(135deg, #FEB692, #EA5455); }
-        #section4 { background: linear-gradient(135deg, #CE9FFC, #7367F0); }
-        #section5 { background: linear-gradient(135deg, #90F7EC, #32CCBC); }
-        #section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
-        */
-
-#section1 { background: linear-gradient(135deg, #FDEB71, #F8D800); }
-#section2 { background: linear-gradient(135deg, #ABDCFF, #0396FF); }
-#section3 { background: linear-gradient(135deg, #FEB692, #EA5455); }
-#section4 { background: linear-gradient(135deg, #CE9FFC, #7367F0); }
-#section5 { background: linear-gradient(135deg, #90F7EC, #32CCBC); }
-#section6 { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
-#section7 { background: linear-gradient(135deg, #81FBB8, #28C76F); }
-#section8 { background: linear-gradient(135deg, #FFD3A5, #FD6585); }
-
-
-    p {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #e0f7fa, #e1bee7);
       color: #333;
-      font-size: 1.3rem;
+      overflow-x: hidden;
     }
-.sliding-sheet {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  z-index: 10000;
-  background: #000;
-  pointer-events: none;
-}
 
-.left-sheet, .right-sheet {
-  width: 50%;
-  height: 100%;
-  background: #000;
-}
-
-.left-sheet {
-  animation: slideLeft 2.5s forwards;
-}
-
-.right-sheet {
-  animation: slideRight 2.5s forwards;
-}
-
-@keyframes slideLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-@keyframes slideRight {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
-}
-
-.fade-in-content {
-  opacity: 0;
-  transition: opacity 1.5s ease;
-}
-
-     .section-container {
+    header {
+      height: 100vh;
       display: flex;
-      align-items: center; /* Vertically align */
-      justify-content: space-between;
-      padding: 30px;
-      font-family: Arial, sans-serif;
-    }
-
-    .text-content {
-      flex: 1;
-      padding-right: 20px;
-      font-size: 18px;
-    }
-
-    .scrolling-image {
-      width: 200px;
-      height: 200px;
-      overflow: hidden;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      background: url('/api/placeholder/800/600') center/cover no-repeat;
       position: relative;
-      flex-shrink: 0; /* Prevent image from shrinking */
     }
 
-    .scrolling-image img {
+    header::before {
+      content: '';
       position: absolute;
-      animation: scrollUp 6s linear infinite;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+      to { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px #ff4da6; }
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
       width: 100%;
-    }
-
-    @keyframes scrollUp {
-      0% { top: 100%; }
-      100% { top: -100%; }
-    }
-
-    /* Optional: Responsive behavior */
-    @media (max-width: 768px) {
-      .section-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .text-content {
-        padding-right: 0;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-    }  
-
-
-    .carousel {
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
       display: flex;
-      width: fit-content;
-      animation: scroll 30s linear infinite;
+      justify-content: center;
+      padding: 15px 0;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
     }
 
-    .carousel img {
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-      margin-right: 10px;
+    .navbar.visible { transform: translateY(0); }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-gradient:nth-child(1) { background: linear-gradient(135deg, #FDEB71, #F8D800); }
+    .section-gradient:nth-child(2) { background: linear-gradient(135deg, #ABDCFF, #0396FF); }
+    .section-gradient:nth-child(3) { background: linear-gradient(135deg, #FEB692, #EA5455); }
+    .section-gradient:nth-child(4) { background: linear-gradient(135deg, #CE9FFC, #7367F0); }
+    .section-gradient:nth-child(5) { background: linear-gradient(135deg, #90F7EC, #32CCBC); }
+    .section-gradient:nth-child(6) { background: linear-gradient(135deg, #FFF6B7, #F6416C); }
+    .section-gradient:nth-child(7) { background: linear-gradient(135deg, #81FBB8, #28C76F); }
+    .section-gradient:nth-child(8) { background: linear-gradient(135deg, #FFD3A5, #FD6585); }
+
+    .chapter-title {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .chapter-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: #f69d3c;
+    }
+
+    .scroll-text {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+      max-width: 800px;
+      text-align: center;
+      font-size: 1.2rem;
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 10px;
+      padding: 20px;
     }
 
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+    .scroll-text.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-       /* 🎂 Realistic Cake Container */
-    .real-cake {
-        position: relative;
-        width: 200px;
-        margin: 0 auto 50px;
-        z-index: 10;
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #f69d3c;
+      animation: confetti-fall 5s ease-in infinite;
+      z-index: 999;
     }
 
-    /* 🍰 Cake Layers */
-    .cake-bottom, .cake-middle, .cake-top {
-        width: 100%;
-        height: 50px;
-        border-radius: 8px;
-        margin: 0 auto;
-        box-shadow: inset 0 -5px 0 rgba(0,0,0,0.15);
-    }
-    .cake-bottom {
-        background: #8b4513; /* chocolate */
-    }
-    .cake-middle {
-        background: #d2b48c; /* tan */
-    }
-    .cake-top {
-        background: #f9e4b7; /* vanilla */
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100px) rotate(0); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
-    /* 🍯 Frosting Drip */
-    .frosting-drip {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 25px;
-        background: #fff0f5;
-        border-radius: 50% / 100%;
-        box-shadow: 0 12px 0 #fff0f5;
-        z-index: 15;
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 85% 22%, 87% 35%, 80% 45%, 50% 75%, 20% 45%, 13% 35%, 15% 22%, 25% 12%, 39% 12%);
+      animation: float 4s infinite ease-in-out;
+      opacity: 0.8;
     }
 
-    /* 🕯️ Candles */
-    .candle {
-        position: absolute;
-        top: -30px;
-        width: 10px;
-        height: 30px;
-        background: repeating-linear-gradient(
-            to bottom, 
-            #ff69b4, 
-            #ff69b4 5px, 
-            white 5px, 
-            white 10px
-        );
-        border-radius: 2px;
-    }
-    .candle:nth-child(4) { left: 30%; }
-    .candle:nth-child(5) { left: 50%; }
-    .candle:nth-child(6) { left: 70%; }
+    .heart:nth-child(1) { left: 40%; top: 80%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 60%; top: 80%; animation-delay: 1s; }
+    .heart:nth-child(3) { left: 50%; top: 80%; animation-delay: 2s; }
 
-    /* 🔥 Flame Animation */
-    .candle::after {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        width: 8px;
-        height: 12px;
-        background: radial-gradient(circle, #ff0, #f90);
-        border-radius: 50%;
-        transform: translateX(-50%);
-        animation: flicker 0.8s infinite ease-in-out alternate;
-    }
-    @keyframes flicker {
-        0% { transform: translateX(-50%) scale(1); opacity: 1; }
-        100% { transform: translateX(-50%) scale(1.1); opacity: 0.7; }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.9; }
+      50% { transform: translateY(-40px) scale(1.1); opacity: 1; }
+      100% { transform: translateY(-80px) scale(0.9); opacity: 0; }
     }
 
-          /* 🎆 Fireworks */
+    footer {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.1;
+      top: 0; left: 0; bottom: 0; right: 0;
+      position: absolute;
+      z-index: 0;
+    }
+
+    footer p { margin: 10px 0; font-size: 1.1em; }
+    footer p:first-child { font-weight: bold; font-size: 1.3em; color: #ffcccb; }
+
     .firework {
-        position: fixed;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: transparent;
-        box-shadow:
-            0 0 #ffcc00,
-            10px 0 #ff3366,
-            -10px 0 #33ccff,
-            0 10px #66ff66,
-            0 -10px #ffccff,
-            7px 7px #ffff66,
-            -7px -7px #66ffff,
-            -7px 7px #ff9999,
-            7px -7px #cc99ff;
-        animation: explode 1s ease-out forwards;
-        pointer-events: none;
-        z-index: 0;
-    }
-    @keyframes explode {
-        0% { transform: scale(0); opacity: 1; }
-        100% { transform: scale(1.5); opacity: 0; }
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: white;
+      pointer-events: none;
+      z-index: 9999;
+      animation: explode 0.8s ease-out forwards, sparkle 0.4s ease-in-out infinite alternate;
     }
 
-        
+    @keyframes explode {
+      0% { transform: scale(0) translate(0, 0); opacity: 1; }
+      100% { transform: scale(1.2) translate(var(--dx), var(--dy)); opacity: 0; }
+    }
+
+    @keyframes sparkle {
+      0% { box-shadow: 0 0 2px #fff, 0 0 6px gold; filter: brightness(2); }
+      100% { box-shadow: 0 0 4px #fff, 0 0 12px orange; filter: brightness(1.2); }
+    }
     </style>
 </head>
 <body>
@@ -741,11 +485,7 @@ footer::before {
         </div>
    
     </section> 
-
-           
-  
-     
-    
+   
 <footer>
     <div class="heart"></div>
     <div class="heart"></div>
@@ -755,139 +495,146 @@ footer::before {
     <p>© <span id="current-year"></span> <span id="current-date"></span> | Birthday Celebration's of Best Friend</p>
 </footer>
 
+ <script>
+   window.addEventListener('DOMContentLoaded', () => {
+      // Set current date and year
+      const now = new Date();
+      document.getElementById("current-year").textContent = now.getFullYear();
+      document.getElementById("current-date").textContent = now.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
 
-    <script>
-        // Update current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-        
-        // Navbar visibility control
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > window.innerHeight * 0.8) {
-                navbar.classList.add('visible');
-            } else {
-                navbar.classList.remove('visible');
-            }
+      // Sliding curtain effect
+      const curtain = document.getElementById('slidingSheet');
+      const mainContent = document.getElementById('mainContent');
+      setTimeout(() => {
+        curtain.style.display = 'none';
+        mainContent.style.opacity = 1;
+
+        // Cake reveal
+        const layerColors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
+        let currentLayer = 0;
+
+        function addCakeLayer() {
+          if (currentLayer >= layerColors.length) return;
+          const yOffset = 180 - currentLayer * 15;
+          const layer = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+          layer.setAttribute("points", `70,${yOffset} 70,${yOffset + 15} 200,${yOffset + 5} 200,${yOffset - 10}`);
+          layer.setAttribute("fill", layerColors[currentLayer]);
+          layer.setAttribute("stroke", "#b7854f");
+          layer.setAttribute("stroke-width", "1");
+          layer.style.opacity = 0;
+          document.getElementById("layers").appendChild(layer);
+          requestAnimationFrame(() => {
+            layer.style.opacity = 1;
+          });
+          currentLayer++;
+        }
+
+        const revealInterval = setInterval(() => {
+          if (currentLayer >= layerColors.length) {
+            clearInterval(revealInterval);
+          } else {
+            addCakeLayer();
+          }
+        }, 800);
+
+        // Confetti
+        function createConfetti() {
+          const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
+          for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 5 + 's';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+          }
+        }
+
+        createConfetti();
+        setInterval(createConfetti, 10000);
+
+        // Candle flame animation
+        const flames = document.querySelectorAll('.flame');
+        setInterval(() => {
+          flames.forEach(flame => {
+            flame.setAttribute('rx', 4 + Math.random() * 2);
+            flame.setAttribute('ry', 7 + Math.random() * 2);
+          });
+        }, 100);
+      }, 2700); // Curtain animation duration
+
+      // Scroll animation
+      const scrollElements = document.querySelectorAll('.scroll-text');
+
+      const elementInView = (el, percent = 100) => {
+        const rect = el.getBoundingClientRect();
+        return rect.top <= window.innerHeight * (percent / 100);
+      };
+
+      const handleScrollAnimation = () => {
+        scrollElements.forEach(el => {
+          if (elementInView(el, 80)) {
+            el.classList.add('visible');
+          } else {
+            el.classList.remove('visible');
+          }
         });
-        
-        // Scroll text animation
-        const scrollElements = document.querySelectorAll('.scroll-text');
-        
-        const elementInView = (el, percentageScroll = 100) => {
-            const elementTop = el.getBoundingClientRect().top;
-            return (
-                elementTop <= 
-                ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
-            );
-        };
-        
-        const displayScrollElement = (element) => {
-            element.classList.add('visible');
-        };
-        
-        const hideScrollElement = (element) => {
-            element.classList.remove('visible');
-        };
-        
-        const handleScrollAnimation = () => {
-            scrollElements.forEach((el) => {
-                if (elementInView(el, 80)) {
-                    displayScrollElement(el);
-                } else {
-                    hideScrollElement(el);
-                }
-            });
-        };
-        
-        window.addEventListener('scroll', () => {
-            handleScrollAnimation();
-        });
-        
-        // Initialize
-        handleScrollAnimation();
-      // Wait for page to load
-  window.addEventListener('DOMContentLoaded', () => {
-    const curtain = document.getElementById('slidingSheet');
-    const mainContent = document.getElementById('mainContent');
+      };
 
-    // Delay showing main content until curtain animation ends
-    setTimeout(() => {
-      curtain.style.display = 'none';
-      mainContent.style.opacity = 1;
-
-      // Start cake layer reveal
-      const layerColors = ['#f9d6a0', '#d4a76a', '#fce5bc', '#ffcdb2', '#deb887', '#f7e7ce'];
-      let currentLayer = 0;
-
-      function addCakeLayer() {
-        if (currentLayer >= layerColors.length) return;
-        const yOffset = 180 - currentLayer * 15;
-        const layer = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-        layer.setAttribute("points", `70,${yOffset} 70,${yOffset + 15} 200,${yOffset + 5} 200,${yOffset - 10}`);
-        layer.setAttribute("fill", layerColors[currentLayer]);
-        layer.setAttribute("stroke", "#b7854f");
-        layer.setAttribute("stroke-width", "1");
-        layer.style.opacity = 0;
-        document.getElementById("layers").appendChild(layer);
-        requestAnimationFrame(() => {
-          layer.style.opacity = 1;
-        });
-        currentLayer++;
-      }
-
-      const revealInterval = setInterval(() => {
-        if (currentLayer >= layerColors.length) {
-          clearInterval(revealInterval);
+      window.addEventListener('scroll', () => {
+        // Show/hide navbar
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > window.innerHeight * 0.8) {
+          navbar.classList.add('visible');
         } else {
-          addCakeLayer();
+          navbar.classList.remove('visible');
         }
-      }, 800);
 
-      // Start confetti
-      function createConfetti() {
-        const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F9C80E'];
-        for (let i = 0; i < 50; i++) {
-          const confetti = document.createElement('div');
-          confetti.className = 'confetti';
-          confetti.style.left = Math.random() * 100 + 'vw';
-          confetti.style.animationDelay = Math.random() * 5 + 's';
-          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          document.body.appendChild(confetti);
-          setTimeout(() => confetti.remove(), 5000);
-        }
+        // Scroll animations
+        handleScrollAnimation();
+      });
+
+      // Initial check
+      handleScrollAnimation();
+    });
+
+    // Fireworks
+    function createFirework(x, y) {
+      const count = 30;
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement('div');
+        spark.classList.add('firework');
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 120 + 40;
+        spark.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+        spark.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1000);
       }
-
-      createConfetti();
-      setInterval(createConfetti, 10000);
-
-      // Animate flames
-      const flames = document.querySelectorAll('.flame');
-      setInterval(() => {
-        flames.forEach(flame => {
-          flame.setAttribute('rx', 4 + Math.random() * 2);
-          flame.setAttribute('ry', 7 + Math.random() * 2);
-        });
-      }, 100);
-
-    }, 2700); // Curtain animation duration
-  });
-   const now = new Date();
-  document.getElementById("current-year").textContent = now.getFullYear();
-  document.getElementById("current-date").textContent = now.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
- // 🎆 Fireworks effect
-    function launchFirework() {
-        const firework = document.createElement("div");
-        firework.classList.add("firework");
-        firework.style.top = Math.random() * window.innerHeight + "px";
-        firework.style.left = Math.random() * window.innerWidth + "px";
-        document.body.appendChild(firework);
-        setTimeout(() => firework.remove(), 1000);
     }
-    setInterval(launchFirework, 1200);
+
+    setInterval(() => {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight * 0.6;
+      createFirework(x, y);
+    }, 1000);
+
+    document.addEventListener('click', (e) => {
+      for (let i = 0; i < 3; i++) {
+        const offsetX = (Math.random() - 0.5) * 100;
+        const offsetY = (Math.random() - 0.5) * 100;
+        createFirework(e.clientX + offsetX, e.clientY + offsetY);
+      }
+    });
 </script>
 </body>
 </html>
